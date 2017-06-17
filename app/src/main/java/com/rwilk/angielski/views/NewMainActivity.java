@@ -1,9 +1,11 @@
 package com.rwilk.angielski.views;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -34,10 +36,22 @@ public class NewMainActivity extends AppCompatActivity {
     public static int databaseVersion = 2;
     public static ArrayList<WordSQL> listOfWordsToDatabase;
 
+    //private static int SPLASH_TIME_OUT = 4000;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_main_activity);
+
+        /*new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent startIntent = new Intent(NewMainActivity.this, StartActivity.class);
+                startActivity(startIntent);
+                finish();
+            }
+        }, SPLASH_TIME_OUT);*/
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

@@ -425,11 +425,10 @@ public class DBHelper extends SQLiteOpenHelper {
      */
     public int getCompleted(int section) {
         SQLiteDatabase db = this.getReadableDatabase();
-        int completed = 0;
         try {
             Cursor cursor = db.rawQuery("select * from " + TABLE_SECTIONS + " where " + ID_SECTION + "= " + section + ";", null);
             cursor.moveToFirst();
-            completed = cursor.getInt(cursor.getColumnIndex(COMPLETED));
+            int completed = cursor.getInt(cursor.getColumnIndex(COMPLETED));
             System.out.println("Completed " + completed);
             cursor.close();
             db.close();
