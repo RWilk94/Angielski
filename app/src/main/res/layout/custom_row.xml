@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@null"
+    android:id="@+id/ReLayoutCustomRow">
+
+
+    <LinearLayout
+        android:id="@+id/linearLayoutCustomRow"
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+        android:background="#FFFFFF"
+        android:orientation="horizontal"
+        android:descendantFocusability="blocksDescendants"
+        android:animateLayoutChanges="true">
+
+        <ImageView
+            android:id="@+id/imageButtonSound"
+            android:layout_width="42dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="7.5dp"
+            android:background="#FFFFFF"
+            android:padding="5dp"
+            android:src="@drawable/potworek5"
+            android:scaleType="fitCenter"
+            android:contentDescription="@string/content_description"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_weight="10"
+            android:orientation="vertical"
+            android:background="@null"
+            android:id="@+id/customRowLLTest">
+
+            <TextView
+                android:id="@+id/textViewNapisWierszGora"
+                style="@style/TextViewGora"
+                android:layout_height="30dp"
+                android:layout_marginTop="4dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="Large Text"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                />
+
+            <TextView
+                android:id="@+id/textViewNapisWierszDol"
+                style="@style/TextViewDol"
+                android:layout_height="25dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="Medium Text"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                />
+
+        </LinearLayout>
+
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:id="@+id/imageButtonHiddenStroke"
+            android:src="@drawable/szary"
+            android:background="@null"
+            android:layout_gravity="center_vertical"
+            android:scaleType="fitCenter"/>
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:id="@+id/imageButtonTrudneSlowko"
+            android:src="@drawable/szary"
+            android:background="@null"
+            android:layout_gravity="center_vertical"
+            android:scaleType="fitCenter"
+            android:layout_marginRight="10dp"/>
+
+        <!--
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="invisible"
+            android:id="@+id/changeDifficultWord"
+            android:onClick="changeDifficultWord"/> -->
+
+    </LinearLayout>
+
+
+ <!--- _____________________________________________________________Body niżej _______________________________________________ -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="vertical"
+        android:layout_below="@+id/linearLayoutCustomRow"
+        android:visibility="gone"
+        android:id="@+id/linearLayoutInfoAboutWordBody"
+        android:animateLayoutChanges="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/ksiazka"
+                android:contentDescription="@string/content_description"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/infoEnglishWord"
+                    style="@style/TextViewGora"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="English word"
+                    android:textSize="26sp" />
+
+                <TextView
+                    android:id="@+id/infoPolishWord"
+                    style="@style/TextViewDol"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Polskie słowo"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+   </RelativeLayout>

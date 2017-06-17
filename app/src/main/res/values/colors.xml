@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="grey_300">#E0E0E0</color>
+
+    <color name="pusty">@null</color>
+    <color name="green800">#2E7D32</color>
+    <color name="white">#FFFFFF</color>
+
+    <color name="redLesson">#D32F2F</color>
+    <color name="yellowLesson">#FFEB3B</color>
+    <color name="purpleLesson">#8E24AA</color>
+    <color name="lightBlueLesson">#29B6F6</color>
+    <color name="orangeLesson">#FF9800</color>
+    <color name="greenLesson">#388E3C</color>
+
+    <color name="redLesson200">#EF9A9A</color>
+    <color name="yellowLesson200">#FFF59D</color>
+    <color name="purpleLesson200">#CE93D8</color>
+    <color name="lightBlueLesson200">#90CAF9</color>
+    <color name="orangeLesson200">#FFCC80</color>
+    <color name="greenLesson200">#A5D6A7</color>
+
+</resources>

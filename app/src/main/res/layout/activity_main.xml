@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.MainActivity">
+
+    <include
+        android:id="@+id/my_toolbar"
+        layout="@layout/toolbar" />
+
+    <!--Przesuwana powierzchnia -->
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/my_toolbar"
+        android:animateLayoutChanges="true">
+
+        <!--ScrollView może mieć tylko jedno dziecko -->
+        <!-- Główny layout -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:orientation="vertical" >
+
+            <fragment
+                android:id="@+id/fragmentHumanBody"
+                android:name="com.rwilk.angielski.views.fragments.HumanBodyFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:layout="@layout/fragment_human_body" />
+
+            <fragment
+                android:id="@+id/fragmentWeather"
+                android:name="com.rwilk.angielski.views.fragments.WeatherFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:layout="@layout/fragment_weather" />
+
+
+            <Button
+                android:id="@+id/export"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Export"/>
+
+            <Button
+                android:id="@+id/tworzenie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="tworzenie"/>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@color/grey_300">
+
+                <com.google.android.gms.common.SignInButton
+                    android:id="@+id/sign_in_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:visibility="visible"
+                    tools:visibility="gone" />
+
+                <LinearLayout
+                    android:id="@+id/sign_out_and_disconnect"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <Button
+                        android:id="@+id/sign_out_button"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/sign_out"
+                        android:theme="@style/MyDarkButton" />
+
+                    <Button
+                        android:id="@+id/disconnect_button"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/disconnect"
+                        android:theme="@style/MyDarkButton" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+
+        </LinearLayout><!--Dziecko w scrollView czyli cały widok -->
+    </ScrollView>
+</RelativeLayout>

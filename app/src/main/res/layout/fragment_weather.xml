@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/lightBlueLesson200"
+    android:orientation="vertical">
+
+
+    <!-- Pogoda naglowek ______________________________________________________________________________________ -->
+    <!--Poziomy layout jako jedna linijka -->
+    <LinearLayout
+        android:id="@+id/linearLayoutWeatherHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ProgressBar
+            android:id="@+id/progressBarCircle"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/circle_progress_background"
+            android:max="100"
+            android:progressDrawable="@drawable/circular" />
+
+        <!--Layout trzymajacy w srodku tekst -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextViewGora"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="10dp"
+                android:text="Lekcja 1"
+                android:textColor="@color/white" />
+
+            <TextView
+                style="@style/TextViewDol"
+                android:layout_marginBottom="10dp"
+                android:text="@string/pogoda_pl"
+                android:textColor="@color/white" />
+        </LinearLayout>
+    </LinearLayout>
+    <!-- __________________________________________________________Koniec naglowka pogoda ________________________________________________ -->
+    <!-- __________________________________________________________Body pogoda ________________________________________________ -->
+
+
+</LinearLayout>

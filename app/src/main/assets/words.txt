@@ -1,0 +1,42 @@
+//*Ciało ludzkie
+//rzeczownik
+biodra	hips
+brzuch	stomach
+ciało	body
+czaszka	skull
+czoło	forehead
+dłoń	palm
+dotyk	touch
+gardło	throat
+jelita	intestines
+stopa	foot
+
+//czasownik
+bić (o sercu)	beat
+biegać	run
+
+//*Pogoda
+//rzeczownik
+babie lato	Indian summer
+błyskawica	lightning
+bryza	breeze
+burza	storm
+burza śnieżna	snowstorm
+
+//*Wagi i miary
+//rzeczownik
+stopa	foot
+
+//*Zwierzeta
+//rzeczownik
+antylopa	antelope
+bestia	beast
+bizon	bison
+bocian	stork
+czapla	heron
+czas karmienia	feeding-time
+delfin	dolphin
+dziki kot	wild cat
+dziób	beak
+flaming	flamingo
+foka	seal

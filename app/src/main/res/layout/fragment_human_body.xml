@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/greenLesson200"
+    android:orientation="vertical"
+    android:id="@+id/humanBodyFragment">
+
+    <!--Poziomy layout jako jedna linijka nagłówka HumanBody-->
+    <LinearLayout
+        android:id="@+id/linearLayoutHumanBodyHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true"
+        android:orientation="horizontal">
+
+        <!--Obrazek ksiazki albo mozgu -->
+        <ImageView
+            style="@style/ImageView"
+            android:contentDescription="@string/content_description"
+            android:src="@drawable/ksiazka"
+            android:background="@drawable/oval_shape"/>
+
+        <!--Layout trzymajacy w srodku tekst HumanBody -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <!-- Napis naglowka gora -->
+            <TextView
+                style="@style/TextViewGora"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/czlowiek_cialo_ludzkie_en"
+                android:textColor="@color/white"/>
+            <!-- Napis naglowka dol -->
+            <TextView
+                style="@style/TextViewDol"
+                android:layout_marginBottom="10dp"
+                android:text="@string/czlowiek_cialo_ludzkie_pl"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">Angielski</string>
+
+    <string name="ContentDescription">Can\'t load image</string>
+    <string name="SkipLogin">Skip login</string>
+    <string name="toolbar_title" translatable="false">Rafał Wilk </string>
+    <string name="toolbar_subtitle" translatable="false">wilkrafal15@gmail.com</string>
+
+    <string name="restore_backup">Restore Backup</string>
+    <string name="create_backup">Create Backup</string>
+    <string name="log_out_or_disconnect">Log out or disconnect</string>
+    <string name="sign_in">Sign In</string>
+
+    <string name="are_you_want_to_exit">Are you want to exit?</string>
+    <string name="you_will_lose_your_progress">You will lose your progress.</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="error_while_loading_words">Error while loading words.</string>
+    <string name="know_all_words_from_level">You already know all the words from this level!</string>
+
+
+    <string name="ekran_glowny_toolbar">Rafał Wilk - angielski</string>
+    <string name="searchable">searchable</string>
+
+    <string name="content_description">Obraz działu</string>
+    <string name="content_description_minka">Progress</string>
+
+    <string name="czlowiek_cialo_ludzkie_pl">Ciało Ludzkie</string>
+    <string name="czlowiek_cialo_ludzkie_en">Human Body</string>
+    <string name="human_body_ptak_czesci_ciala">Części ciała</string>
+    <string name="human_body_ptak_czynnosci">Czynności</string>
+    <string name="human_body_ptak_cechy">Cechy</string>
+    <string name="human_body_ptak_test">Test</string>
+
+    <string name="pogoda_pl">Pogoda</string>
+    <string name="pogoda_en">Weather</string>
+    <string name="teaching_activity_toolbar">Poznaj nowe słówka</string>
+
+    <string name="disconnect">Disconnect</string>
+    <string name="signed_out">Signed Out</string>
+    <string name="sign_out">Sign Out</string>
+
+
+</resources>

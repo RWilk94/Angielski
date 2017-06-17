@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Angielski</string>
+    <string name="teaching_activity_toolbar">Poznaj nowe słówka</string>
+    <string name="main_activity_toolbar">Ucz się angielskiego</string>
+
+
+    <string name="lesson_1">Lekcja 1</string>
+    <string name="lesson_2">Lekcja 2</string>
+    <string name="lesson_3">Lekcja 3</string>
+    <string name="lesson_4">Lekcja 4</string>
+    <string name="lesson_5">Lekcja 5</string>
+    <string name="lesson_6">Lekcja 6</string>
+    <string name="lesson_7">Lekcja 7</string>
+    <string name="lesson_8">Lekcja 8</string>
+    <string name="lesson_9">Lekcja 9</string>
+    <string name="lesson_10">Lekcja 10</string>
+    <string name="lesson_11">Lekcja 11</string>
+    <string name="lesson_12">Lekcja 12</string>
+    <string name="lesson_13">Lekcja 13</string>
+    <string name="lesson_14">Lekcja 14</string>
+    <string name="lesson_15">Lekcja 15</string>
+    <string name="lesson_16">Lekcja 16</string>
+    <string name="lesson_17">Lekcja 17</string>
+    <string name="lesson_18">Lekcja 18</string>
+    <string name="lesson_19">Lekcja 19</string>
+    <string name="lesson_20">Lekcja 20</string>
+
+
+</resources>

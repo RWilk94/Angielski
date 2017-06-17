@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@null"
+    android:id="@+id/ReLayoutCustomRow">
+
+
+    <LinearLayout
+        android:id="@+id/linearLayoutCustomRow"
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+        android:background="#FFFFFF"
+        android:orientation="horizontal"
+        android:descendantFocusability="blocksDescendants"
+        android:animateLayoutChanges="true">
+
+        <ImageView
+            android:id="@+id/imageButtonSound"
+            android:layout_width="42dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="7.5dp"
+            android:background="#FFFFFF"
+            android:padding="5dp"
+            android:src="@drawable/potworek5"
+            android:scaleType="fitCenter"
+            android:contentDescription="@string/content_description"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_weight="10"
+            android:orientation="vertical"
+            android:background="@null"
+            android:id="@+id/customRowLLTest">
+
+            <TextView
+                android:id="@+id/textViewNapisWierszGora"
+                style="@style/TextViewGora"
+                android:layout_height="30dp"
+                android:layout_marginTop="4dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="Large Text"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                />
+
+            <TextView
+                android:id="@+id/textViewNapisWierszDol"
+                style="@style/TextViewDol"
+                android:layout_height="25dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="Medium Text"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

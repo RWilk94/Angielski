@@ -1,0 +1,108 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+        <!-- Kolor jak zminimalizyjesz -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <!-- Kolor wyciaganego paska z gory -->
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <!-- Kolor paska postępu -->
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+    <!--Styl zrobiony pod textView w activity_main -->
+    <style name="TextViewGora">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="TextViewDol">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="ImageView">
+        <item name="android:layout_width">50dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:contentDescription">Obraz działu</item>
+        <item name="android:animateLayoutChanges">true</item>
+    </style>
+
+    <style name="LinearLayoutPtaki">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:animateLayoutChanges">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="TextViewPtaki">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:animateLayoutChanges">true</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="ImageViewMinki">
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginLeft">2dp</item>
+        <item name="android:layout_marginRight">2dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:scaleType">fitCenter</item>
+    </style>
+
+    <style name="ImageViewPierwszaNauka">
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:gravity">bottom</item>
+        <item name="android:layout_gravity">bottom</item>
+    </style>
+
+    <!-- przezroczysty kolor tla -->
+    <color name="trans">#DFFFFFFF</color>
+    <style name="AppTheme.SelectOfRepeatTheme">
+        <item name="android:windowIsTranslucent" >true</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+        <item name="android:windowBackground">@color/trans</item>
+    </style>
+
+    <style name="ButtonOneOfFourAnswers">
+        <item name="android:textStyle">italic</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:padding">3dp</item>
+        <item name="android:background">@drawable/button_one_of_four</item>
+    </style>
+
+    <style name="MyDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:background">@color/white</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <!-- Dark Buttons -->
+    <style name="MyDarkButton" >
+        <item name="colorButtonNormal">@color/colorAccent</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+
+</resources>
