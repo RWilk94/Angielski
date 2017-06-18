@@ -160,8 +160,8 @@ public class NewMainActivity extends AppCompatActivity {
                 } else {
                     int tabulator = mLine.indexOf("\t"); //znajdujemy tabulator
                     if (tabulator != -1) {
-                        polishWord = mLine.substring(0, tabulator); //wycinamy polskie słowo
-                        englishWord = mLine.substring(tabulator + 1, mLine.length());
+                        englishWord = mLine.substring(0, tabulator); //wycinamy polskie słowo
+                        polishWord = mLine.substring(tabulator + 1, mLine.length());
                     }
                     String sql = "'" + polishWord + "', '" + englishWord + "', '"  + partOfSpeech + "'";
                     WordSQL wordSQL = new WordSQL();

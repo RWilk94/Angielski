@@ -13,7 +13,6 @@ import android.widget.ListView;
 
 import com.rwilk.angielski.DBHelper;
 import com.rwilk.angielski.R;
-import com.rwilk.angielski.customview.CustomAdapter;
 import com.rwilk.angielski.customview.CustomAdapterFragments;
 import com.rwilk.angielski.database.Lesson;
 import com.rwilk.angielski.database.Word;
@@ -23,7 +22,6 @@ import com.rwilk.angielski.views.NewMainActivity;
 import java.util.ArrayList;
 
 import static com.rwilk.angielski.R.layout.fragment_lessons;
-import static com.rwilk.angielski.R.layout.fragment_weather;
 
 /**
  * ListView z fragmentami do klikania.

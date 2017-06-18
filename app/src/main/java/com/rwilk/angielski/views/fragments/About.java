@@ -122,7 +122,7 @@ public class About extends Fragment implements View.OnClickListener {
             }
         }
         setPoints();
-        view.findViewById(R.id.findFriend).setOnClickListener(this);
+        //view.findViewById(R.id.findFriend).setOnClickListener(this);
 
         return view;
     }
@@ -155,10 +155,10 @@ public class About extends Fragment implements View.OnClickListener {
         } else if (i == R.id.createBackup) {
             verifyStoragePermissions(getActivity());
             uploadFile();
-        } else if (i == R.id.findFriend) {
+        } //else if (i == R.id.findFriend) {
             //findFriend("wilkrafal1mizst@gmail.com");
             //displayPopupWindow(view);
-        }
+        //}
 
     }
 

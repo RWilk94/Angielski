@@ -543,7 +543,10 @@ public class DBHelper extends SQLiteOpenHelper {
                 Lesson lesson = new Lesson();
                 String section = cursor.getString(cursor.getColumnIndex(NAME));
                 int progress = cursor.getInt(cursor.getColumnIndex(COMPLETED));
-                lesson.setTextViewTop(section);
+                int id = cursor.getInt(cursor.getColumnIndex(ID_SECTION));
+                lesson.setTextViewBottom(section);
+                String textTop = "Lekcja " + String.valueOf(id);
+                lesson.setTextViewTop(textTop);
                 lesson.setProgress(progress);
                 listOfSections.add(lesson);
                 cursor.moveToNext();

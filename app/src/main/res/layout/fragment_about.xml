@@ -178,13 +178,14 @@
         android:id="@+id/LogOutOrDisconnect"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/findFriend"
         android:layout_marginBottom="10dp"
+        android:layout_alignParentBottom="true"
         android:background="@drawable/button_one_of_four"
         android:text="@string/log_out_or_disconnect"
         android:textAllCaps="false"
         android:textColor="@color/colorPrimary" />
 
+            <!--
     <Button
         android:id="@+id/findFriend"
         android:layout_width="match_parent"
@@ -193,7 +194,7 @@
         android:background="@drawable/button_one_of_four"
         android:text="Find friends..."
         android:textAllCaps="false"
-        android:textColor="@color/colorPrimary" />
+        android:textColor="@color/colorPrimary" /> -->
         </RelativeLayout>
 </LinearLayout>
 

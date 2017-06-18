@@ -1,42 +1,918 @@
-//*Ciało ludzkie
-//rzeczownik
-biodra	hips
-brzuch	stomach
-ciało	body
-czaszka	skull
-czoło	forehead
-dłoń	palm
-dotyk	touch
-gardło	throat
-jelita	intestines
-stopa	foot
+//*Unit1 spam
+//1.1
+lodger	lokator
+relationships	relacje
+work	praca
+daily habits	codzienne nawyki (przyzwyczajenia)
+finances	finanse
+politics	polityka
+future plans	przyszłe plany
+music	muzyka
+references	referencje
+diet	dieta
+post-graduate	absolwent
+be messy	być bałaganierzem
+practical	praktyczny
+sensible	rozsądny
+decent salary	przyzwoita pensja
 
-//czasownik
-bić (o sercu)	beat
-biegać	run
+//1.2
+embarrassed	zawstydzony
+embarrassment	zakłopotanie/zawstydzenie
+exhausted	wyczerpany
+exhaustion	wyczerpanie
+satisfied	zadowolony
+satisfaction	zadowolenie
+thrilled	wstrząśnięty/podekscytowany
+awkward	niezręczny
+awkwardness	niezręczność
+relieved	odczuć ulgę
+anxious	zaniepokojony/niespokojny
+anxiety	lęk
+fascinated	zafascynowany
+frustrated	sfrustrowany
+frustration	frustracja
+impressed	pod wrażeniem
+nervous	nerwowy
+nervousness	nerwowość
+similar	podobny
+similarity	podobieństwo
+disappointed	rozczarowany
+disappointment	rozczarowanie
+generous	hojny
+generosity	hojność
 
-//*Pogoda
-//rzeczownik
-babie lato	Indian summer
-błyskawica	lightning
-bryza	breeze
-burza	storm
-burza śnieżna	snowstorm
+//*Unit1 vocabulary 
+//vocabulary 1
+cautious	ostrożny
+eccentric	ekscentryczny
+flexible	elastyczny
+over the last fortnight	w ciągu ostatnich dwóch tygodni
+genuine	prawdziwy
+mean	skąpy/podły
+moody	nastrojowy
+naive	naiwny
+sympathetic	współczujący
+trustworthy	godny zaufania
+witty	dowcipny
+absence	nieobecność
+absent	nieobecny
+presence	obecność
+present	obecny
+violence	przemoc
+violent	gwałtowny
+patience	cierpliwość
+patient	cierpliwy
+secrecy	tajność 
+secret	tajny
+accuracy	precyzja
+accurate	precyzyjny
+democracy	demokracja
+democrat	demokrata
+decency	przyzwoitość
+decent	przyzwoity
+independent	niezależny
+independence	niezależność
+urgent	pilny
+urgence	pilność
+fluent	biegły
+fluence	biegłośc
+silent	cichy
+silence	cisza
+private	prywatny
+privacy	prywatność
+permanent	stały
+permanency	stałość
+intelligent	inteligentny
+intelligence	inteligencja
 
-//*Wagi i miary
-//rzeczownik
-stopa	foot
+//*Unit1 pogrubione 
+//1.1
+keep myself to myself	zamknięty w sobie
+geek	maniak
+tight-fisted	skąpy
+people person	osoba towarzyska
+am particular about	przykładać do czegoś uwagę
+pull their weight	przykładać się do czegoś
+down-to-earth	przyziemny; praktyczny
+out until the early hours	nie ma mnie (w domu) do wczesnych godzin
+a good laugh	śmieszek
+get into	wciągnąć się w coś
 
-//*Zwierzeta
-//rzeczownik
-antylopa	antelope
-bestia	beast
-bizon	bison
-bocian	stork
-czapla	heron
-czas karmienia	feeding-time
-delfin	dolphin
-dziki kot	wild cat
-dziób	beak
-flaming	flamingo
-foka    seal
+//1.2
+mundane	przyziemny
+trivial	trywialny
+tottering	chwiejny (krok)
+loathung	odraza
+bonnet	maska (samochodu)
+taps into	sięga w coś
+recurring	powtarzające się
+
+//1.3
+fill in	uzupełnić
+sign up	zapisać się
+limited enrolment	ograniczona rejestracja (ilość)
+deposit	kaucja
+non-refundable	nie zwracalna
+two-for-one	dwa	w cenie jednego
+matinee	przedpołudnie/poranek
+first come first served	kto pierwszy ten lepszy
+limited run	ograniczona ilość
+
+//*Unit2 vocabulary
+//vocabulary
+flood	powódź
+earthquake	trzęsienie ziemi
+drought	susza
+forest fire	pożar lasu
+landslide	osuwisko
+tornado	tornado
+tsunami	tsunami
+volcanic eruption	erupcja wulkanu 
+political		polityczny
+economic	gospodarczy
+ethical	etyczny
+global	światowy
+industrial	przemysłowy
+domestic	krajowy
+rural	wiejski
+urban	miejski
+politics	polityka
+city	miasto
+economy	gospodarka
+ethics	etyka
+world	świat
+industry	przemysł
+country	kraj
+village	wieś
+decrease	zmniejszać/spadek
+record	rekord/nagrywać
+sponsor	sponsor
+export	eksport
+increase	zwiększać
+permit	zezwolenie
+appeal	apel
+appealing	pociągający
+project	przewidywać
+
+//*Unit2 spam
+//2.1
+raising money	zbieranie pieniędzy
+charity	dobroczynność, organizacja charytatywna
+participate	uczestniczyć
+ordinary	zwykły
+cause	przyczyna, powód
+nearly	prawie
+according	według
+except	z wyjątkiem
+bursting with energy	tryskając energią
+bucket	wiadro
+
+//*Unit2 pogrubione
+//2.1
+eye-opening	uświadamiający
+jelly	galaretka
+hooting	trąbić
+corridors	korytarz 
+unaccustomed	nieprzywykły
+marathon	maraton
+worn out	zużyte
+donations	darowizny
+pollution	zanieczyszczenia
+poverty	ubóstwo
+drought	susza
+famine	głód
+drunkenness and drug abuse	pijaństwo i narkotyki
+divorce	rozwód
+domestic violence	przemoc domowa
+debt	dług
+obesity	otyłość
+lack of drinking water	brak wody pitnej
+homelessness	bezdomność
+
+//2.2
+surveillance	inwigilacja
+phone cameras	kamera w telefonie
+speed cameras	fotoradary
+cctv cameras	kamery przemysłowe
+microchips	mikroczipy
+street level cameras	kamery na ulicy
+number plate recognition	rozpoznawanie numerów rejestracyjnych
+
+//2.3
+disturbing	niepokojący
+illegal	nielegalny
+unethical	nieetyczny
+justifiable	uzasadniony/słuszny
+inevitable	nieunikniony
+inoffensive	nieszkodliwy
+sensible	rozsądny
+outrageous	skandaliczny
+take the case of	weźcie pod uwagę
+such as	jak na przykład
+it''s a well-known fact that	to dobrze znany fakt
+like	tak jak
+apparently	widocznie
+it''s been shown that	to zostało pokazane
+according to	według
+for instance	na przykład
+
+//*Unit3 Spam
+//3.1
+annoying	denerwujący
+good looking	przystojny
+kind	uprzejmy, miły
+shy	nieśmiały
+(get) bored (with)	znudzony
+boredom	nuda
+behaviour	zachowanie
+potential problems	potencjalne problemy
+in particular	w szczególności
+come round	odwiedzać
+pretend that	udawać
+deep down	w głębi duszy lub serca
+meningless acrivites	zajęcia nic nie znaczące, bez znaczenia
+meaningful leisure	znaczące, poważne zajęcie
+leisure time	czas wolny
+buzzword	modne określenie
+niche holiday	wakacje dla ludzi ze szczególnymi zainteresowaniami
+flopout holiday	wakacje spędzone na leżakowaniu i relaksie
+package holiday	wczasy zorganizowane
+
+//*Unit3 Pogrubione
+//3.1
+take care of	opiekować się kimś/czymś
+pay attention to	uważać, uważnie słuchać
+compliment someone	komplementować
+get on with something	radzić sobie z czymś
+get something on	zakładać na siebie
+give in	poddać się argumentom, ugiąć się
+put something off	odkładać
+neglect	zaniedbać
+be stubborn	być upartym
+ignore	ignorować
+criticise someone for	krytykować
+to start with	zaczynając
+for instance	na przykład
+in addition to this	dodatkowo
+at the same time	w tym samym czasie
+in conclusion	w konkluzji
+
+//3.2
+densely populated	gęsto zaludniony
+sparsely populated	mało zaludniony
+accommodation	zakwaterowanie
+penonsula	półwysep
+crow	wrona
+mountain slope	zbocze
+summit	szczyt
+edge 	krawedź
+heavily forested	gęsto zalesiony
+in close proximity to something	blisko czegoś
+
+//3.3
+deal out	rozdać
+stir	mieszać
+double-click	podwójne kliknięcie
+jams	zacinać się
+pass	podać
+unplugin	odłączyć
+sieve	przesiać
+roll 	toczyć
+sprinkle	posypać
+press	wciśnij
+
+//vocabulary 3
+the ball is in your court	teraz Twój ruch
+kick off	rozpocząć
+in the ballprank	racjonalne oszacowanie
+on the ball	szybko coś zrozumieć 
+tackle	rozwiązać coś w określony sposób
+a whole new ballgame	całkowicie nowa sytuacja
+bunch	pęczek np. bananów, kluczy
+gang	gand np. złodziei
+series	seria np. błędów, wydarzeń, książek
+flock	gromada np. owiec, ptaków
+batch	partia np. ciastek, egzaminów
+swarm	rój np. pszczół
+crowd	tłum np. fanów
+herd	stado np. krów
+pack	sfora np. psów
+set	zbiór np. książek
+selfish	samolubny
+talkative	gadatliwy
+a good parent	dobry rodzic
+neglected	zaniedbany
+a good friend	dobry przyjaciel
+patient	cierpliwy
+rude	niegrzeczny
+
+//*Unit4 Spam
+//4.1
+apparently	najwidoczniej
+avid	zachłanny
+fortunately	na szczęście
+eventually	ostatecznie; wreszcie
+unsurprisingly	nic dziwnego
+naturally	naturalnie
+finally	wreszcie
+stupidly	głupio
+hopefully	miejmy nadzieję
+an easy read	łatwe do czytania
+be keen on	 pasjonować się
+I just couldn’t get into it	nie mogłem się wciągnąć
+I’m not into	nie interesuję się tym
+plot	fabuła
+pleased	zadowolony
+eager	gorliwy, niecierpliwy
+thrilled	podekscytowany
+awkward	niezręczny, skrępowany
+expectant	wyczekujący
+agitated	poruszony, zdenerwowany
+
+//*Unit4 Pogrubione
+//4.1
+stroll	przechadzać się
+stranded	porzucony
+futile –daremny
+intrigued	zaintrygowany
+owing to	z powodu
+low	przygnębiony
+on the road to 	na (dobrej) drodze do
+pass away	umrzeć
+//4.1 przysłowia
+Every cloud has a silver lining	nie ma tego złego co by na dobre nie wyszło
+What goes around comes around	jak ty komu tak on tobie
+Where there’s smoke there’s fire	nie ma dymu bez ognia
+Once bitten twice shy	raz się sparzysz następnym razem jesteś ostrożniejszy
+When in Rome do as the Romans do	wszedłeś między wrony kracz jak one
+Where there’s life there’s hope	tam gdzie (jeszcze) życie, tam nadzieja
+Let’s cross that bridge when we come to it	nie martwmy się na zapas
+
+//4.2
+have second thoughts about	mieć wątpliwości, rozmyślić się
+kick myself	być na siebie złym, mieć do siebie pretensje
+it’s a pity	szkoda, że
+be gutted	być załamanym; rozczarowanym
+with hindsight	po fakcie, patrząc wstecz
+a missed opportunity	 stracona okazja
+
+take up	podjąć, zainteresować się 
+settle down	ustatkować się,ułożyć sobie życie
+turn up	pojawić się, przybyć
+set up 	założyć (np. firmę)
+give up	rzucić (np. pracę, nałóg)
+bring sb up –wychowywać kogoś
+go on to	przejść do 
+take sb on	zatrudnić kogoś
+take to sth/sb	polubić
+put sb off	zniechęcać 
+step down from	ustąpić z (stanowiska)
+turn sth/sb down	odrzucić, nie przyjąć
+get over	dojść do siebie, przezwyciężyć
+go by	mijać
+
+//4.3
+novel	nowela
+blog	blog
+lyrics	tekst piosenki
+gossip magazine	magazyn plotkarski
+manga	manga
+bigraphy	biografia
+autobiography	autobiografia
+e-book	książka elektroniczna
+poetry	poezja
+online encyclopedia	encyklopedia online
+manual	podręcznik
+website forum	forum internetowe
+
+//*Unit4 vocabulary
+//vocabulary
+stagger	zataczać się
+wade	brodzić (w wodzie)
+march	maszerować
+crawl	czołgać się
+tiptoe	chodzić na palcach
+slide	ślizgać się
+wander	spacerować
+limp	utykać
+creep	skradać się
+
+//*Unit5 pogrubione
+//5.1
+transformed	przekształcać
+altered	zmieniony
+damaged	zniszczony
+had a beneficial effect on	miały korzystny wpływ na
+had a detrimental effect on	miało szkodliwy wpływ na
+enhanced	wzmocnione
+distorted	zniekształcony
+revolutionised	zrewolucjonizowały
+breakthrough	przełom
+trade off	kompromis
+outlook	prespektywy
+drawback	wada
+breakdowns	awarie
+outcome	wynik
+downside	minus
+
+//5.2
+commercials	reklamy
+pop-up	pop-up
+brand	marka
+endorse/promote	popierać/promować
+campaigns	kampanie
+logo	logo
+influence	wpływ
+slogans	hasła
+cold calls	niezapowiedziane telefony
+advertise	reklamować
+makes	model
+jingle	melodyjka
+
+//5.3
+fashionable	modny
+brilliant	znakomity
+weird	ziwaczny
+obscure	niejasny/niezrozumiały
+predictable	przewidywalny
+absurd	absurdalny
+dreadful	straszny/okropny
+unrealistic	nierealny
+ambitious	ambitny
+
+//*Unit5 vocabulary
+//vocabulary
+long-life batteries	baterie o długiej żywotności
+high-definition TV	telewizor o wysokiej rozdzielczości
+pocket-sized camcorder	kamera kieszonkowa
+waterproof watch	wodoodporny zegarek
+voice-activated dictaphone	dyktafon aktywowany głosem
+built-in dishwasher	zmywarka do zabudowy
+handheld GPS system	ręczny system GPS
+solar-powered torch	latarka słoneczna
+eco-friendly detergent	przyjazny dla środowiska detergent
+energy-efficient lightbulb	energooszczędna żarówka
+
+advertise a product	reklamować towar
+manufacture a product	produkować produkt
+launch a product	wprowadzić produkt na rynek
+demonstrate a product	pokazać produkt
+promote a product	promować produkt
+arrange a meeting	zorganizować spotkanie
+open a meeting	otworzyć spotkanie
+close a meeting	zamknąć spotkanie
+cancel a meeting	anulować spotkanie
+postpone a meeting	odłożyć spotkanie 
+lower a price	niższa cena
+raise a price	podnieść cenę
+set a price	ustalić cenę
+increase a price		podnieść cenę
+reduce a price	obniżyć cenę
+set up a business	założyć firmę
+run a business	prowadzić firmę
+take over a business	przejąć firmę
+manage a business	zarządzać firmą
+expand a business	rozwinąć działalność
+break into a market	włamać się na rynek
+enter a market	wejść na rynek
+leave a market	zostawić rynek
+re-enter  a market	ponownie wejść na rynek
+see a gap in a market	zobaczyć lukę w rynku
+
+
+//*Unit5 spam
+//5.1
+inventions	wynalazki 
+nuclear power	energia atomowa
+weapons	broń
+cigarettes	papierosy
+cause bodily harm	spowodować uszczerbek na zdrowiu
+widely frowned upon	powszechnie źle widziane (dobrze)
+offender	przestępca
+warfare	działania wojenne
+despite health scares linking	pomimo zagrożenia dla zdrowia
+brain tumours	guzy mózgu
+ring tones	dzwonki
+devastating effects	katastrofalne skutki
+taxpayer	podatnik
+waste storage	składowanie odpadów
+a concern	jest problemem
+carbon dioxide	dwutlenek węgla
+outvoted	przegłosowany
+wealthy	bogaty 
+motor industry	przemysł motoryzacyjny
+is now booming	teraz jest boom
+take over	przejąć
+carbon footprint	emisji dwutlenku węgla
+develop lung cancer	zachorowanie na raka płuc
+pregnant	w ciąży
+underweight babies	dzieci z niedowagą
+doubtless surprised	niewątpliwie zaskoczony
+risen	wzrosła
+devoted to it	poświęcona nim
+anyone''s guess	możemy tylko się domyślać
+ultimate eaters	ostatecznymi konsumentami/najlepsi jedzący
+estimated	oszacować
+carefree consumption of fatty	beztroski spożywanie tłustych
+may be numbered	mogą być numerowane
+obese	otyły
+filed a lawsuit	złożyć pozew
+fastfood chain	sieć fast foodów
+fattening them up	utłuczyć kogoś
+threw out	odrzucił
+
+//5.2
+crowded	zatłoczony
+saturated	nasycony
+expected to think	spodziewać się
+intuitively feel	intuicyjnie czuję
+
+//*Unit6 pogrubione
+//6.1
+for his or her age	wyglądać na swój wiek 
+in his or her age	najlepszy okres w ich życiu 
+Act your age!	zachowywać się w bardziej dorosły sposób.
+come of age 	osiągnąć wiek kiedy jest się legalnie dorosłym
+immature	dziecinny, nie dojrzały
+maturity	dojrzałość 
+elderly	starszy 
+age discrimination	deskryminacja ze względu na wiek
+
+//6.2
+have one''s ups and downs	mieć swoje wzloty i upadki
+go nowhere	donikąd nie prowadzić
+taking one step forward, and two steps back	być  w coraz większej problemie (chyba)
+look forward to something	oczekiwać na coś z niecierpliwością
+have mixed feelings 	mieć mieszane uczucia
+feel like doing	mieć ochotę coś zrobić
+look on the bright side	patrzyć na sprawy optymistycznie
+dreading	obawianie się, lękanie się
+upbeat 	wesoły, optymistyczny
+cynical	cyniczny
+gloomy	ponury, smutny
+fill you with optimism	wypełniać optymizmem
+promising 	obiecujący, dobrze się zapowiadający
+fill you with despair	rozpacz
+
+//6.3
+doing a part-time job	pracować na pół etatu
+owning a mobile phone	posiadać telefon komórkowy
+wearing make-up	noszenie makijażu
+staying home alone	zostanie samemu w domu
+getting your ears pierced	przebijanie w domu
+using social networking websites	korzystać z serwisów społecznościowych
+having your own credit card	posiadanie własnej karty kredytowej
+riding a scooter	jeździć na skuterze
+babysitting for a toddler	opiekować się dzieckiem
+travelling solo	podróżować samemu
+staying as late as you want	pozostać tak długo jak się chce
+running your own business	prowadzić własną firmę
+
+//*Unit6 vocabulary
+//vocabulary
+ought to	powinnien
+obligation 	zobowiązanie
+prohibition	zakaz
+lack of obligation	brak zobowiązania
+permission	zezwolenie
+ability	umiejętność, zdolność
+don''t need to	nie musisz
+won''t be able to	nie będzie w stanie
+supposed to	przypuszczać
+managed to	udało się
+feel obliged to	czuć się zobowiązany
+make	robić
+let	pozwolić
+never allowed to	nigdy nie wolno
+appreciate	doceniać  
+appreciation	uznanie, wdzięczność
+react	reagować 
+reaction	reakcja
+oblige	zobowiązać, wyświadczyć przysługę  
+obligation	zobowiązanie
+impress	imponować 
+impression	wrażenie
+achieve	osiągnąć, zdobywać  
+achievement	osiągnięcie
+involve	wymagać, pociągać za sobą  
+involvement	uczestnictwo, zaangażowanie
+judge	osądzać, sądzić
+judgement	osąd, ocena sytuacji
+encourage	zachęcać, mobilizować  
+encouragement	zachęta, wsparcie
+pretend 	udawać 
+pretence	pretekst, pretensje
+interfere 	wtrącać się
+interference	ingerencja, wtrącanie się
+prefer 	preferować  
+preference	preferencja
+advise 	poradzić, doradzić 
+advice	rada
+practise 	wprawiać się; ćwiczyć  
+practice	praktyka
+
+//*Unit6 vocabulary2
+//spam
+hang out	spędzać czas
+appreciate	doceniać
+
+//vocabulary2
+swollen	spuchnięty
+dizzy	zawroty głowy
+sneezing	kichanie
+irritable	rozdrażniony
+blurry	rozmyte
+shivering	dreszcze
+paralysed	sparaliżowany
+vomit	wymioty
+stiff	sztywny
+allergic to	uczulony na
+food poisoning	zatrucie pokarmowe
+insomnia	bezsenność
+arthritis	artretyzm
+sprained	zwichnięty
+minor stroke	niewielki udar
+bug	infekcja wirusowa
+dehydrated	odwodniony
+nearsighted	krótkowzroczny
+contribution	wkład 
+contribute	przyczyniać się 
+explosion	eksplozja 
+explode	eksplodować 
+intention	zamiar 
+intend	zamierzać 
+invasion	inwazja 
+invade	najechać 
+completion	ukończenie 
+complete	zakończyć 
+creation	kreacja 
+create	tworzyć 
+argument	kłótnia 
+argue	kłócić się 
+development	rozwój 
+develop	rozwijać 
+government	rząd 
+govern	rządzić
+treatment	leczenie 
+treat	leczyć
+investment	inwestycja 
+invest	inwestować
+arrangement	umowa 
+arrange	zorganizować 
+
+//*Unit6 vocabulary3
+//vocabulary3
+defence	obrona 
+defend	bronić
+offence	wykroczenie 
+offend	obrazić 
+occurrence	występowanie 
+occur	pojawić się 
+existence	istnienie 
+exist	istnieć 
+coincidence	zgodność 
+coincide	zgodzić się
+reference	odniesienie 
+refer	odnosić się
+reversal	odwrócenie 
+reverse	odwracać
+removal	usuwanie 
+remove	usunąć 
+disposal	sprzedaż 
+dispose	pozbyć się 
+approval	zatwierdzenie 
+approve	zatwierdzać
+survival	przetrwanie 
+survive	przetrwać 
+proposal	wniosek 
+propose	zaproponować
+closure	zamknięcie 
+close	zamknąć 
+signature	podpis 
+sign	podpisać 
+exposure	ekspozycja 
+expose	odsłonić
+mixture	mieszanina 
+mix	mieszać 
+pleasure	przyjemność 
+please	prosić 
+failure	niepowodzenie 
+fail	zawieść 
+employee	pracownik 
+employ	zatrudniać 
+payee	odbiorca płatności 
+pay	płacić 
+addressee	adresat 
+address	adresować 
+trainee	stażystka 
+train	trenować 
+interviewee	rozmówca 
+interview	przeprowadzać wywiad 
+dicorcee	rozwódka 
+divorce	rozwodzić się
+
+//*Unit7 pogrubione
+//7.1
+wildlife programme	program o dzikich zwierzętach
+reality show	program na żywo
+costume drama	serial kostiumowy
+soap opera	telenowela
+sketch show	kabaret
+sitcom	serial komediowy 
+documentary	film dokumentalny
+docudrama	 film z fabułą 
+series	seria filmów
+serial	serial
+thriller	dreszczowiec
+detective series	detektywistyczny
+game show	teleturniej
+quiz	 teleturniej
+current affairs programme	program o obecnej sytuacji
+the news	wiadomości
+aired	nadawać
+rows	awantura
+one-off  coś niepowtarzalnego
+glamorous  wspaniały
+renowned	sławny
+in-depth	dogłębnie
+come under fire 	być krytykowany
+has cross-generational appeal	popularne w każdym stuleciu
+
+//7.2
+accuse	oskarżać
+apologise	przepraszać
+persuade	namawiać
+insist	nalegać, domagać się
+suggest	sugerować
+agree	zgadzać się
+promise	obiecywać
+deny	zaprzeczać
+admit	przyznać się
+refuse	odmawiać
+threaten	grozić, straszyć
+offer	proponować, oferować
+
+//7.3
+broadsheet	gazeta dużego formatu
+circulation	nakład, sprzedaż (np. gazeta)
+tabloid	brukowiec, gazeta brukowa
+columnist	felietonista
+features	główny artykół w gazecie
+readership 	czytelnicy
+supplements 	dodatek (do gazety)
+biased	stronniczy, przychylnie nastawiony
+editorial page	strona redakcyjna
+sensationalism 	pogoń za sensacją
+
+//*Unit7 spam
+//7.3
+gossip	plotkować
+influential	wpływowy
+deserve	zasługiwać
+certain	pewien
+genuine importance 	szczera prawda
+however	jednakże
+lastly	ostatnio
+on balane	po namyśle
+while 	podczas gdy
+although	mimo że
+depite 	pomimo
+dying out	wymrzeć, wygasnąć
+glimpses	mignięcie
+flip through	przekartkować
+befriended	zaprzyjaźnić
+royalty- rodzina królewska
+excitement	podniecenie
+
+//*Unit7 vocabulary
+//vocabulary
+turn out	 okazać się
+break down	popsuć się, załamać się
+come across	spotkać kogoś przypadkiem 
+bring out   wprowadzać na rynek  /wydobywać z kogoś coś
+take back	odwoływać
+put up with	przenocować
+break into	włamać się
+pull out of	odjechać pociąg
+bring up   wychowywać,  poruszać temat
+putting off 	obrzydzać, odkładać
+turn down 	odrzucać, wyłączyć
+go by 	ocenic, przemijać
+took on 	zatrudnić, rywalizować
+breaking news	informacje z ostatniej chwili
+headlines	nagłówki
+news feed	kanał informacyjny
+forum	forum
+weather forecast	prognoza pogody
+video link	link video
+podcast	podcast
+navigation buttons	przyciski nawigacyjne
+banner ad	banner reklamowy
+
+//*Unit8 pogrubione
+//8.2
+bright and breezy	radosny 
+groggy	otumaniony
+at your sharpest	w pełni sił
+at your lowest ebb	przeżywać kryzys
+have a sense of dread	odczuwać lęk
+have a spring or a bounce in your step	chodzić spreżysym krokiem
+wide awake	całkiem rozbudzony
+fussed- zaniepokojony
+despise it with a passion	gardzić  pasją
+//8.2 idiomy
+pressed for time	presja czasu
+cut it short	steszczać sie (ruszyć dupę)
+biding his time	czekać na właściwy moment
+in the nick of time	w ostatniej chwili
+once in a blue moon	raz na ruski rok
+time after time	w kółko
+make up for lost time	nadrobić skrócony czas
+dragging their feet	zwlekać, ociągać się
+
+//8.3
+supportive	wsparcie
+unsupportive	niewłaściwy
+unhelpful	nieprzydatny
+helpful	pomocny
+diplomatic	dyplomatyczny
+undiplomatic	niedyplomatyczny
+tactful	taktowny
+tactless	nietaktowny
+sensitive	wrażliwy
+insensitive	niewrażliwy
+sensible	rozsądny
+senseless	bezsensowny
+confrontational	konfrontacyjny
+unconfrontational	niekonfrontacyjny
+collaborative	współpracujący
+individual	indywidualny
+aggressive	agresywny
+non-aggressive	nieagresywny
+assertive	stanowczy
+unassertive	skromny
+direct	bezpośredni
+indirect	pośredni
+focused	skoncentrowany
+unfocused	nieskupiony
+
+//*Unit8 vocabulary
+//vocabulary
+put off a decision	odrzucić decyzję
+postopne a decision	 odkładać decyzje
+arrive at a decision	potejmować decyzję
+come to a decision	podjąć decyzję
+strick to one''s principles	trzymać się zasad
+go against one''s principles	wbrew zasadom
+betray one''s principles	zdradzać zasady
+follow one''s principles	podążać za zasadami
+compare the pros and cons 	porównywać dobre i zle strony
+analyse the pros and cons	analizować dobre i złe strony
+weigh up the pros and cons	rozważyć dobre i złe stony
+examine the pros and cons	badać dobre i złe strony
+analyse a situation	analizoawć sytuację
+weigh up a situation	rozważyć sytuację
+examine a situation	badać sytuację
+assess a situation	zbilansować sytuację
+
+apprehensive	lękliwy
+disorientated	zdezorientowany
+mystified	zdumiony
+cheerful	wesoły
+furious	wściekły
+petrified	skamieniały
+glad	zadowolony
+puzzled	zaskoczony
+delighted	zachwycony
+livid	wściekły
+terrified	przerażony
+depressed	przygnębiony
+miserable	nieszczęśliwy
+upset	zdenerwowany
+turned a blind eye to	przymknąć oko
+see eye to eye	mieć takie same poglądy
+got a big mouth	mieć niewyparzoną gębę
+lost his head	stracić głowę
+catch eye	przykuć czyjś wzrok
+get a foot in the door  zrobić dobry początek
+cost an arm and a leg	kosztować majątek
+pain in the neck	cholerstwo
+
+//*Unit8 spam
+//8.1
+a hiker	turystya
+to be standed	zostać zdanym na własne siły  
+descent	schodzenie, opadanie
+fellow hikers	koledzy turysty XD
+make-shift	chwilowy, zastępczy
+to carry on doing something	kontynuować robienie czegoś
+to call rescue party	wzywać ekipę ratunkową
+to put your life in danger	narazić życie na niebezpieczeństwo
+moisture	wilgoć 
+huddle together	przytulać się
+discharged	wypisać ze szpitala
+tough	trudny
+footage	materiał filmowy
+turned him in	wydać kogoś, zdawać na policji
+tempation	pokusa
