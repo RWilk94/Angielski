@@ -18,7 +18,8 @@ public class TTSClass implements TextToSpeech.OnInitListener {
     private TextToSpeech textToSpeech;
 
     public TTSClass(){
-        textToSpeech = new TextToSpeech(Angielski.getAppContext(), this);
+        Angielski angielski = new Angielski();
+        textToSpeech = new TextToSpeech(angielski.getAppContext(), this);
     }
 
     public void speek(String word){

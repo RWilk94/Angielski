@@ -42,6 +42,15 @@
         android:layout_below="@id/toolbar"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
+    <!--<ListView
+        android:id="@+id/listViewAllWords"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:divider="#FFCC00"
+        android:dividerHeight="0dp"
+        android:layout_below="@id/container"/> -->
+
     <android.support.design.widget.TabLayout
         android:id="@+id/tabs"
         android:layout_width="match_parent"

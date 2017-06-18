@@ -6,15 +6,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.TranslateAnimation;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.rwilk.angielski.DBHelper;
 import com.rwilk.angielski.R;
 import com.rwilk.angielski.database.Word;
 import com.rwilk.angielski.views.Level;
-import com.rwilk.angielski.views.MainActivity;
 import com.rwilk.angielski.views.NewMainActivity;
 
 import java.util.ArrayList;
@@ -27,35 +26,48 @@ import static com.rwilk.angielski.R.layout.fragment_weather;
  */
 public class WeatherFragment extends Fragment {
 
-    //private LinearLayout linearLayoutWeatherBody;
     private LinearLayout linearLayoutWeatherHeader;
-    //private static ArrayList<Word> allWordsFromLevel;
     public ArrayList<Word> wordListFromLevel;
 
     private ProgressBar progressBar;
+    private TextView fragmentWeatherTextViewTop;
+    private TextView fragmentWeatherTextViewBottom;
+    private static int idSection = -1;
+    private String sectionName = "";
+
+
+    public static WeatherFragment newInstance(int id) {
+        WeatherFragment fragment = new WeatherFragment();
+        idSection = id;
+        return fragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(fragment_weather, container, false);
-
-        //linearLayoutWeatherBody = (LinearLayout) view.findViewById(R.id.linearLayoutWeatherBody);
         linearLayoutWeatherHeader = (LinearLayout) view.findViewById(R.id.linearLayoutWeatherHeader);
-
         progressBar = (ProgressBar)view.findViewById(R.id.progressBarCircle); //progressBarCircle
+        fragmentWeatherTextViewTop = (TextView)view.findViewById(R.id.fragmentWeatherTextViewTop);
+        fragmentWeatherTextViewBottom = (TextView)view.findViewById(R.id.fragmentWeatherTextViewBottom);
 
+        if(idSection > 0) {
+            DBHelper db = new DBHelper(getContext(), NewMainActivity.databaseVersion);
+            sectionName = db.getSectionName(idSection);
+            db.close();
+        }
+        String text = "Lesson " + idSection;
+        fragmentWeatherTextViewTop.setText(text);
+        fragmentWeatherTextViewBottom.setText(sectionName);
         return view;
     }
 
-    private void setProgressBar(){
-
+    /*private void setProgressBar(){
         DBHelper db = new DBHelper(getContext(), NewMainActivity.databaseVersion);
         //wordListFromLevel.get(0).getIdSection();
         db.setCompleted(wordListFromLevel.get(0).getIdSection());
         db.close();
-
-
-    }
+    }*/
 
     private void getProgressBar(){
         DBHelper db = new DBHelper(getContext(), NewMainActivity.databaseVersion);
@@ -66,13 +78,7 @@ public class WeatherFragment extends Fragment {
         db.close();
     }
 
-    /*public static WeatherFragment newInstance(ArrayList<Word> allWordFromLevel) {
-        Bundle args = new Bundle();
-        WeatherFragment fragment = new WeatherFragment();
-        fragment.setArguments(args);
-        allWordsFromLevel = allWordFromLevel;
-        return fragment;
-    }*/
+
 
     @Override
     public void onStart() {
@@ -81,37 +87,24 @@ public class WeatherFragment extends Fragment {
         linearLayoutWeatherHeader.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                wordListFromLevel = ((NewMainActivity)getActivity()).getListaSlowek("Zwierzeta");
+                wordListFromLevel = ((NewMainActivity)getActivity()).getListaSlowek(sectionName);
                 Intent intent = new Intent(getActivity(), Level.class);
                 intent.putExtra("wordsFromLevel", wordListFromLevel);
-                intent.putExtra("title", "Ciało ludzkie");
-                //intent.putExtra("subtitle", "Części ciała");
-                setProgressBar();
-                getProgressBar();
+                intent.putExtra("title", sectionName);
+                intent.putExtra("subtitle", "Lista słówek");
+                //setProgressBar();
+                //getProgressBar();
                 startActivity(intent);
             }
         });
+    }
 
-
-        /*linearLayoutWeatherHeader.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (linearLayoutWeatherBody.getVisibility() == View.VISIBLE) {
-                    TranslateAnimation animate = new TranslateAnimation(linearLayoutWeatherBody.getWidth(), linearLayoutWeatherHeader.getWidth(), linearLayoutWeatherBody.getHeight(), linearLayoutWeatherHeader.getHeight()); //z x; do x; z y; do y;
-                    animate.setDuration(300);
-                    animate.setFillAfter(true);
-                    linearLayoutWeatherBody.startAnimation(animate);
-                    linearLayoutWeatherBody.setVisibility(View.GONE);
-                } else {
-                    //tutaj okreslamy kierunek animacji
-                    TranslateAnimation animate = new TranslateAnimation(0, 0, -50, 0); //z x; do x; z y; do y;
-                    animate.setDuration(300);
-                    animate.setFillAfter(false);
-                    linearLayoutWeatherBody.startAnimation(animate);
-                    linearLayoutWeatherBody.setVisibility(View.VISIBLE);
-                }
-            }
-        });*/
+    @Override
+    public void setUserVisibleHint(boolean visible) {
+        super.setUserVisibleHint(visible);
+        if (visible && isResumed()) {
+            getProgressBar();
+        }
     }
 
 }

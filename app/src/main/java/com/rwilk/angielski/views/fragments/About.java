@@ -26,6 +26,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -63,8 +64,8 @@ public class About extends Fragment implements View.OnClickListener {
     private FirebaseAuth auth;
     private String uniqueID;
 
-    private FirebaseStorage storage = FirebaseStorage.getInstance();
-    private StorageReference storageReference = storage.getReference();
+    private FirebaseStorage storage;// = FirebaseStorage.getInstance();
+    private StorageReference storageReference;// = storage.getReference();
 
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static String[] PERMISSIONS_STORAGE = {
@@ -85,6 +86,9 @@ public class About extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_about, container, false);
+        FirebaseApp.initializeApp(getContext());
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
 
         TextView email = (TextView) view.findViewById(R.id.email);
         ImageView photo = (ImageView) view.findViewById(R.id.photo);

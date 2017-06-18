@@ -178,7 +178,7 @@ public class InfoAboutWord extends AppCompatActivity {
             imageViewInfoRepeat.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    db.setRepeat(currentWord.getId()); //ustawiamy w bazie danych
+                    db.setRepeat(currentWord.getId(), currentWord.getIdSection()); //ustawiamy w bazie danych
                     currentWord.setRepeat(db.getRepeat(currentWord.getId())); //ustawiamy w parametrach slowka
                     setParametersOfWord(currentWord); //ustawiamy wszystkie obrazki progressu
                     Level.changeRepeatWord(currentWord.getId()); //zmieniamy parametry slowka w liscie w levelu...

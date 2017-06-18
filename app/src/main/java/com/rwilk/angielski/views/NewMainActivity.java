@@ -1,11 +1,9 @@
 package com.rwilk.angielski.views;
 
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -28,30 +26,28 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 /**
- * Blabla
- * Created by wilkr on 21.05.2017.
+ * Created by Rafał Wilk.
+ * NewMainActivity jest to gółwna klasa, uruchamiana jest po ekranie logowania.
+ * Elementami widoku są: ViewPager, Toolbar i fragment, w którym są umieszczane lekcje do nauki.
  */
 public class NewMainActivity extends AppCompatActivity {
 
-    public static int databaseVersion = 2;
+    /** Wersja bazy danych. Zmienna używana przy tworzeniu obiektu klasy DBHelper i dostępie do bazy danych.  */
+    public static int databaseVersion = 1;
+
+    /** Lista słówek pobranych z pliku, używana do tworzenia bazy danych. */
     public static ArrayList<WordSQL> listOfWordsToDatabase;
 
-    //private static int SPLASH_TIME_OUT = 4000;
-
+    /**
+     * Metoda wywoływana w momencie, kiedy widok (activity) jest tworzony.
+     * This method receives the parameter savedInstanceState, which is a Bundle object containing the activity's previously saved state.
+     * If the activity has never existed before, the value of the Bundle object is null.
+     * @param savedInstanceState  object containing the activity's previously saved state
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_main_activity);
-
-        /*new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent startIntent = new Intent(NewMainActivity.this, StartActivity.class);
-                startActivity(startIntent);
-                finish();
-            }
-        }, SPLASH_TIME_OUT);*/
-
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -69,9 +65,13 @@ public class NewMainActivity extends AppCompatActivity {
         tabLayout.getTabAt(0).setIcon(R.drawable.mozg);
         tabLayout.getTabAt(1).setIcon(R.drawable.settings);
         createDatabase();
-
     }
 
+
+    /**
+     * Metoda przygotowuje logo, które jest umieszczone na pasku (Toolbar).
+     * @return logo o wymiarach 70x70
+     */
     private Drawable getLogo() {
         Drawable drawable = ContextCompat.getDrawable(this, R.drawable.ksiazka);
         assert (drawable) != null;
@@ -79,43 +79,59 @@ public class NewMainActivity extends AppCompatActivity {
         return new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap, 70, 70, true));
     }
 
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
+    /**
+     * Klasa opisująca zachowania PageAdaptera.
+     */
+    private class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-        public SectionsPagerAdapter(FragmentManager fm) {
+        /**
+         * Domyślny konstruktor
+         * @param fm FragmentManager; w kodzie używamy getSupportFragmentManager;
+         */
+        private SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
         }
 
+        /**
+         * Metoda odpowiada za stworzenie odpowiedniego widoku w zależności, która strona SectionsPagerAdapter jest wyświetlana.
+         * @param position numer strony SectionsPagerAdapter
+         * @return fragment zawierający odpowiedni widok
+         */
         @Override
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
                     return Lessons.newInstance();
-                //return About.newInstance();
                 case 1:
-                    //return Study.newInstance();
                     return About.newInstance();
-                case 2:
-                    //return Skills.newInstance();
-                    return null;
-                case 3:
-                    //return Info.newInstance();
-                    return null;
                 default:
                     return null;
             }
         }
 
+        /**
+         * Metoda zwraca liczbę stron w SectionsPagerAdapter.
+         * @return liczba stron w SectionsPagerAdapter.
+         */
         @Override
         public int getCount() {
             return 2;
         }
     }
 
+    /**
+     * Metoda zamyka NewMainActivity i wraca do LoginActivity.
+     */
     public void closeActivity() {
         finish();
     }
 
 
+    /**
+     * Metoda zwraca się do bazy danych i wyciąga z niej wszystkie słówka z konkretnego poziomu.
+     * @param x poziom, z którego chcemy wyciągnąć słówka.
+     * @return ArrayList<Word> - lista słówek z konkretnego poziomu.
+     */
     public ArrayList<Word> getListaSlowek(String x) {
         DBHelper db = new DBHelper(getApplicationContext(), NewMainActivity.databaseVersion);
         ArrayList<Word> lista = db.getAllWordsFromLevelX(x);
@@ -123,7 +139,10 @@ public class NewMainActivity extends AppCompatActivity {
         return lista;
     }
 
-
+    /**
+     * Metoda wczytuje plik, przetwarza go i zwraca listę słówke, z których zbudujemy bazę danych.
+     * @return lista słówek na podstawie której jest budowana baza danych.
+     */
     public ArrayList<WordSQL> odczytZPliku() {
         BufferedReader reader = null;
         String polishWord = "", englishWord = "", partOfSpeech = "", section = "";
@@ -165,6 +184,9 @@ public class NewMainActivity extends AppCompatActivity {
         return listaSlowZPliku;
     }
 
+    /**
+     * Metoda tworzy bazę danych SQLite.
+     */
     private void createDatabase() {
         DBHelper db;
         System.out.println("DB " + DBHelper.databaseExists);

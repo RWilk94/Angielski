@@ -18,6 +18,7 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,7 +28,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.rwilk.angielski.R;
 import com.rwilk.angielski.database.User;
@@ -35,17 +35,15 @@ import com.rwilk.angielski.database.User;
 import java.util.ArrayList;
 
 /**
- * Class represented login activity.
- * Created by wilkr on 21.05.2017.
+ * Created by Rafał Wilk.
+ * LoginActivity jest to klasa odpowiedzialna za logowanie do aplikacji za pomocą konta Google.
  */
 public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
 
     private final String TAG = "GoogleActivity";
     public final int RC_SIGN_IN = 9001;
     public static FirebaseAuth mAuth;
-    //public static boolean isLogin = false;
     public GoogleApiClient mGoogleApiClient;
-
     public GoogleSignInOptions gso;
 
     @Override
@@ -57,6 +55,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         findViewById(R.id.signInButton).setOnClickListener(this);
         findViewById(R.id.signOutButton).setOnClickListener(this);
         findViewById(R.id.disconnectButton).setOnClickListener(this);
+
+        FirebaseApp.initializeApp(this);
 
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -81,15 +81,11 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     @Override
     protected void onStart() {
         super.onStart();
-
-        //findFriend();
-
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
@@ -97,7 +93,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = result.getSignInAccount();
                 firebaseAuthWithGoogle(account);
-
             }
         }
     }
@@ -216,13 +211,12 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         mDatabase.child(mAuth.getCurrentUser().getUid()).child("lastLogin").setValue(System.currentTimeMillis());
     }
 
+
     public void readDataFromDatabase() {
         mDatabase.child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
                 User user = dataSnapshot.getValue(User.class);
-
                 Log.w(TAG, "User name: " + user.getName() + ", email " + user.getEmail());
                 Log.w(TAG, "User name: " + user.getName() + ", email " + user.getEmail());
             }

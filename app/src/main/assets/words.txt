@@ -39,4 +39,4 @@ delfin	dolphin
 dziki kot	wild cat
 dziób	beak
 flaming	flamingo
-foka	seal
+foka    seal

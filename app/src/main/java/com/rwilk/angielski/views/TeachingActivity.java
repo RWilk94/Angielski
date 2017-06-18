@@ -187,6 +187,7 @@ public class TeachingActivity extends AppCompatActivity {
                         if(progress >= 100) {
                             Level.updateListOfWordFromLevel(listOfWordsToStudy);
                             updatePoints(points);
+
                             finish();
                         } else{
                             mViewPager.setCurrentItem(mViewPager.getCurrentItem() + 1, true);

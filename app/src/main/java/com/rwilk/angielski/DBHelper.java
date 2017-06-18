@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.rwilk.angielski.database.Lesson;
 import com.rwilk.angielski.database.Points;
 import com.rwilk.angielski.database.Word;
 import com.rwilk.angielski.views.NewMainActivity;
@@ -311,7 +312,7 @@ public class DBHelper extends SQLiteOpenHelper {
      * @param id id słówka, któremu chcemy zmienić parametr repeat
      * @return true jeśli zmiana się udała, false jeśli błąd
      */
-    public boolean setRepeat(int id) {
+    public boolean setRepeat(int id, int section) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         try {
@@ -325,6 +326,7 @@ public class DBHelper extends SQLiteOpenHelper {
             cv.put(REPEAT, repeat);
 
             db.update(TABLE_WORDS, cv, ID_WORD + " = ?", new String[]{Integer.toString(id)});
+            setCompleted(section);
             cursor.close();
             db.close();
             return true;
@@ -514,4 +516,67 @@ public class DBHelper extends SQLiteOpenHelper {
         word.setCountingRepeats(cursor.getInt(cursor.getColumnIndex(COUNTING_REPEATS)));
         return word;
     }
+
+    public String getSectionName(int section) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        try {
+            Cursor cursor = db.rawQuery("select * from " + TABLE_SECTIONS + " where " + ID_SECTION + "= " + section + ";", null);
+            cursor.moveToFirst();
+            String name = cursor.getString(cursor.getColumnIndex(NAME));
+            cursor.close();
+            db.close();
+            return name;
+        } catch (Exception e) {
+            Log.e("Database Error", "Database Error: getSectionName" + e);
+            db.close();
+            return null;
+        }
+    }
+
+    public ArrayList<Lesson> getAllSections() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<Lesson> listOfSections = new ArrayList<>();
+        try {
+            Cursor cursor = db.rawQuery("select * from " + TABLE_SECTIONS + ";", null);
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                Lesson lesson = new Lesson();
+                String section = cursor.getString(cursor.getColumnIndex(NAME));
+                int progress = cursor.getInt(cursor.getColumnIndex(COMPLETED));
+                lesson.setTextViewTop(section);
+                lesson.setProgress(progress);
+                listOfSections.add(lesson);
+                cursor.moveToNext();
+            }
+            cursor.close();
+            db.close();
+            return listOfSections;
+        } catch (Exception e) {
+            Log.e("Database Error", "Database Error: getAllSections" + e);
+            db.close();
+            return null;
+        }
+    }
+
+    public ArrayList<Word> getAllWordsFromSectionX(int xSection) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<Word> words = new ArrayList<>();
+        try {
+            Cursor cursor = db.rawQuery("select * from " + TABLE_WORDS +
+                    " WHERE " + ID_SECTION + " =" + xSection + ";", null);
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                Word word = setCursor(cursor);
+                words.add(word);
+                cursor.moveToNext();
+            }
+            cursor.close();
+            db.close();
+            return words;
+        } catch (Exception e) {
+            Log.e("DatabaseError", "DatabaseError: getAllWordsFromLevelX " + e);
+            return null;
+        }
+    }
+
 }
