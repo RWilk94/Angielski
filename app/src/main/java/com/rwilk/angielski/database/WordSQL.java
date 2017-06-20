@@ -2,9 +2,6 @@ package com.rwilk.angielski.database;
 
 import java.io.Serializable;
 
-/**
- * Created by wilkr on 22.05.2017.
- */
 
 public class WordSQL implements Serializable {
 

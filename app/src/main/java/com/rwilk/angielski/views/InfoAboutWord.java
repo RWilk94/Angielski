@@ -18,7 +18,7 @@ import android.widget.TextView;
 
 import com.rwilk.angielski.R;
 import com.rwilk.angielski.customview.TTSClass;
-import com.rwilk.angielski.DBHelper;
+import com.rwilk.angielski.database.DBHelper;
 import com.rwilk.angielski.database.Word;
 
 import java.util.ArrayList;
@@ -27,7 +27,6 @@ import static com.rwilk.angielski.R.layout.fragment_info_about_word;
 
 /**
  * Klasa wyswietla informacje o slowku po dlugim przytrzymaniu na liscie.
- * Created by RWilk on 02.03.2017.
  */
 public class InfoAboutWord extends AppCompatActivity {
 
@@ -97,7 +96,7 @@ public class InfoAboutWord extends AppCompatActivity {
         private ImageView imageViewInfoAboutWord4;
         private ImageView imageViewInfoAboutWord5;*/
         private ImageView imageViewInfoKsiazka;
-        private ProgressBar  progressBar;
+        private ProgressBar progressBar;
         private TextView infoEnglishWord;
         private TextView infoPolishWord;
         private TextView infoPartOfSpeech;
@@ -149,13 +148,13 @@ public class InfoAboutWord extends AppCompatActivity {
             return view;
         }
 
-        private void setImageOfDifficultWord(int id){
+        private void setImageOfDifficultWord(int id) {
             if (db.getDifficult(id) == 1)
                 imageViewInfoDifficult.setImageResource(R.drawable.niebieski);
             else imageViewInfoDifficult.setImageResource(R.drawable.szary);
         }
 
-        private void setImageOfBrainRepeat(int id){
+        private void setImageOfBrainRepeat(int id) {
             if (db.getRepeat(id) == 1)
                 imageViewInfoRepeat.setImageResource(R.drawable.mozg_szary);
             else imageViewInfoRepeat.setImageResource(R.drawable.mozg);
@@ -193,44 +192,44 @@ public class InfoAboutWord extends AppCompatActivity {
             super.onResume();
         }
 
-       public void setParametersOfWord(Word word) {
-           int progressToSet;
-           if(word.getRepeat()==1)progressToSet=50;
-           else progressToSet=word.getProgress();
-           if(progressBar.getProgress()==100)progressBar.setProgress(0);
-           //progressBar.setProgress(word.getProgress()*2);
+        public void setParametersOfWord(Word word) {
+            int progressToSet;
+            if (word.getRepeat() == 1) progressToSet = 50;
+            else progressToSet = word.getProgress();
+            if (progressBar.getProgress() == 100) progressBar.setProgress(0);
+            //progressBar.setProgress(word.getProgress()*2);
 
-           if(android.os.Build.VERSION.SDK_INT >= 11){ //animacja updejtowania progressBara //w sumie to mozna od razu trzaskac bo minimum sdk jest wieksze
-               ObjectAnimator animation = ObjectAnimator.ofInt(progressBar, "progress", progressToSet*2);
-               animation.setDuration(500); // 0.5 second
-               animation.setInterpolator(new DecelerateInterpolator());
-               animation.start();
-           }else progressBar.setProgress(progressToSet*2);
+            if (android.os.Build.VERSION.SDK_INT >= 11) { //animacja updejtowania progressBara //w sumie to mozna od razu trzaskac bo minimum sdk jest wieksze
+                ObjectAnimator animation = ObjectAnimator.ofInt(progressBar, "progress", progressToSet * 2);
+                animation.setDuration(500); // 0.5 second
+                animation.setInterpolator(new DecelerateInterpolator());
+                animation.start();
+            } else progressBar.setProgress(progressToSet * 2);
 
-           if(word.getRepeat()==1)imageViewInfoKsiazka.setImageResource(R.drawable.potworek5);
-           else {
-               switch (word.getProgress()){
-                   case 0:
-                       imageViewInfoKsiazka.setImageResource(R.drawable.potworek0);
-                       break;
-                   case 10:
-                       imageViewInfoKsiazka.setImageResource(R.drawable.potworek1);
-                       break;
-                   case 20:
-                       imageViewInfoKsiazka.setImageResource(R.drawable.potworek2);
-                       break;
-                   case 30:
-                       imageViewInfoKsiazka.setImageResource(R.drawable.potworek3);
-                       break;
-                   case 40:
-                       imageViewInfoKsiazka.setImageResource(R.drawable.potworek4);
-                       break;
-                   case 50:
-                       imageViewInfoKsiazka.setImageResource(R.drawable.potworek5);
-                       break;
-                   default:
-               }
-           }
+            if (word.getRepeat() == 1) imageViewInfoKsiazka.setImageResource(R.drawable.potworek5);
+            else {
+                switch (word.getProgress()) {
+                    case 0:
+                        imageViewInfoKsiazka.setImageResource(R.drawable.potworek0);
+                        break;
+                    case 10:
+                        imageViewInfoKsiazka.setImageResource(R.drawable.potworek1);
+                        break;
+                    case 20:
+                        imageViewInfoKsiazka.setImageResource(R.drawable.potworek2);
+                        break;
+                    case 30:
+                        imageViewInfoKsiazka.setImageResource(R.drawable.potworek3);
+                        break;
+                    case 40:
+                        imageViewInfoKsiazka.setImageResource(R.drawable.potworek4);
+                        break;
+                    case 50:
+                        imageViewInfoKsiazka.setImageResource(R.drawable.potworek5);
+                        break;
+                    default:
+                }
+            }
             /*imageViewInfoAboutWord0.setImageResource(R.drawable.potworek0);
             if (word.getProgress() >= 10 || word.getRepeat() == 1)
                 imageViewInfoAboutWord1.setImageResource(R.drawable.potworek1);

@@ -13,7 +13,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
-import com.rwilk.angielski.DBHelper;
+import com.rwilk.angielski.database.DBHelper;
 import com.rwilk.angielski.R;
 import com.rwilk.angielski.database.Word;
 import com.rwilk.angielski.database.WordSQL;

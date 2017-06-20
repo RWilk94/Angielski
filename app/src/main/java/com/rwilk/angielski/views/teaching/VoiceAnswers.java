@@ -248,6 +248,8 @@ public class VoiceAnswers extends Fragment {
             buttonSpeakerFour.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
             buttonSpeakerFour.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.button_one_of_four_correct));
         }
+        textViewVoiceCorrectAnswers.setTextColor(ContextCompat.getColor(getContext(), R.color.green800));
+        textViewVoiceCorrectAnswers.setVisibility(View.VISIBLE);//pokazujemy napis z poprawnym tlumaczeniem
     }
 
     /**
@@ -269,7 +271,7 @@ public class VoiceAnswers extends Fragment {
             buttonSpeakerThree.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.button_one_of_four_wrong));
         else if (markedImageButton == 3)
             buttonSpeakerFour.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.button_one_of_four_wrong));
-
+        textViewVoiceCorrectAnswers.setTextColor(ContextCompat.getColor(getContext(), R.color.redWrongAnswer));
         textViewVoiceCorrectAnswers.setVisibility(View.VISIBLE);
         ((TeachingActivity) getActivity()).decreaseListOfWordsToStudy(correctAnswer.getId());
     }

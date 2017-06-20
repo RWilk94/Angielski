@@ -1,16 +1,15 @@
-package com.rwilk.angielski.database;
+package com.rwilk.angielski.application;
 
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 
 /**
- * Created by wilkr on 13.04.2017.
- * Context to static method
+ * Klasa dziedziczy z Application. Dzięki temu można uzyskać context do statycznych metod.
  */
 public class Angielski extends Application {
 
-    private static Context context;
+    public static Context context;
 
     public void onCreate() {
         super.onCreate();
@@ -21,5 +20,7 @@ public class Angielski extends Application {
         return Angielski.context;
     }
 
-    public static Activity getActivity() {return Angielski.getActivity(); }
+    public static Activity getActivity() {
+        return Angielski.getActivity();
+    }
 }

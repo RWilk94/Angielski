@@ -3,7 +3,6 @@ package com.rwilk.angielski.database;
 import java.io.Serializable;
 
 /**
- * Obiekt slowa z bazy danych
  * Created by RWilk on 22.09.2016.
  */
 public class Word implements Serializable {

@@ -10,15 +10,11 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.rwilk.angielski.R;
-import com.rwilk.angielski.DBHelper;
+import com.rwilk.angielski.database.DBHelper;
 import com.rwilk.angielski.database.Word;
 
 import java.util.ArrayList;
 
-/**
- * Mały wycinek, wybór powtórek.
- * Created by wilkr on 30.03.2017.
- */
 public class SelectOfRepeat extends Activity {
 
     private ImageButton imageButtonSelectOfRepeatAll;
@@ -45,7 +41,7 @@ public class SelectOfRepeat extends Activity {
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         int width = dm.widthPixels;
         int height = dm.heightPixels;
-        getWindow().setLayout((width),(int)(height*0.3));
+        getWindow().setLayout((width), (int) (height * 0.3));
         getWindow().setGravity(Gravity.BOTTOM);
 
         //db = new DBHelper(getBaseContext());
@@ -59,15 +55,15 @@ public class SelectOfRepeat extends Activity {
             public void onClick(View view) {
                 //to mozna w nowym fredzie
                 ArrayList<Word> listOfAllWordToRepetition = new ArrayList<>();
-                for(int i =0; i<listOfAllWordFromLevel.size(); i++){
-                    if(listOfAllWordFromLevel.get(i).getRepeat()==0
-                            && listOfAllWordFromLevel.get(i).getProgress()>=50)
+                for (int i = 0; i < listOfAllWordFromLevel.size(); i++) {
+                    if (listOfAllWordFromLevel.get(i).getRepeat() == 0
+                            && listOfAllWordFromLevel.get(i).getProgress() >= 50)
                         listOfAllWordToRepetition.add(listOfAllWordFromLevel.get(i));
                 }
-                if(listOfAllWordToRepetition.isEmpty()){
-                    Toast.makeText(getApplicationContext(), "Nie masz słów do nauki!",Toast.LENGTH_SHORT).show();
+                if (listOfAllWordToRepetition.isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Nie masz słów do nauki!", Toast.LENGTH_SHORT).show();
                     finish();
-                }else {
+                } else {
                     Intent intent = new Intent(SelectOfRepeat.this, RepetitionActivity.class);
                     intent.putExtra("Lista", listOfAllWordFromLevel);
                     intent.putExtra("ListaDoPowtorki", listOfAllWordToRepetition);
@@ -80,14 +76,14 @@ public class SelectOfRepeat extends Activity {
             @Override
             public void onClick(View view) {
                 ArrayList<Word> listOfAllWordToRepetition = new ArrayList<>();
-                for(int i =0; i<listOfAllWordFromLevel.size(); i++){
-                    if(listOfAllWordFromLevel.get(i).getDifficultWord()==1)
+                for (int i = 0; i < listOfAllWordFromLevel.size(); i++) {
+                    if (listOfAllWordFromLevel.get(i).getDifficultWord() == 1)
                         listOfAllWordToRepetition.add(listOfAllWordFromLevel.get(i));
                 }
-                if(listOfAllWordToRepetition.isEmpty()){
-                    Toast.makeText(getApplicationContext(), "Nie masz trudnych słówek!",Toast.LENGTH_SHORT).show();
+                if (listOfAllWordToRepetition.isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Nie masz trudnych słówek!", Toast.LENGTH_SHORT).show();
                     finish();
-                }else {
+                } else {
                     Intent intent = new Intent(SelectOfRepeat.this, RepetitionActivity.class);
                     intent.putExtra("Lista", listOfAllWordFromLevel);
                     intent.putExtra("ListaDoPowtorki", listOfAllWordToRepetition);
@@ -96,7 +92,6 @@ public class SelectOfRepeat extends Activity {
             }
         });
     }
-
 
 
     @Override

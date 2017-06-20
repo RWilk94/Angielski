@@ -2,10 +2,6 @@ package com.rwilk.angielski.database;
 
 import java.io.Serializable;
 
-/**
- * Created by wilkr on 17.06.2017.
- */
-
 public class Lesson implements Serializable {
 
     String textViewTop;

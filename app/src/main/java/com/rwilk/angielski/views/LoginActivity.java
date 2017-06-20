@@ -35,7 +35,6 @@ import com.rwilk.angielski.database.User;
 import java.util.ArrayList;
 
 /**
- * Created by Rafał Wilk.
  * LoginActivity jest to klasa odpowiedzialna za logowanie do aplikacji za pomocą konta Google.
  */
 public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
@@ -231,8 +230,9 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
     /**
      * Method find user in database which has email equal given by user.
+     *
      * @param email user email
-     * @return  ArrayList<User> if find or null if user does not exist.
+     * @return ArrayList<User> if find or null if user does not exist.
      */
     public ArrayList<User> findFriend(final String email) {
         final ArrayList<User> selectedUsers = new ArrayList<>();
@@ -256,10 +256,9 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             public void onCancelled(DatabaseError databaseError) {
             }
         });
-        if (selectedUsers.isEmpty()){
+        if (selectedUsers.isEmpty()) {
             Toast.makeText(getApplicationContext(), "Can't find friends", Toast.LENGTH_SHORT).show();
             return null;
-        }
-        else return selectedUsers;
+        } else return selectedUsers;
     }
 }

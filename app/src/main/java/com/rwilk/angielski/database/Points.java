@@ -3,7 +3,6 @@ package com.rwilk.angielski.database;
 import java.io.Serializable;
 
 /**
- * Created by wilkr on 11.06.2017.
  * Obiekt z bazy danych - punkty.
  */
 

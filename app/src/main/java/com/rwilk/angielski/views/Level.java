@@ -15,8 +15,8 @@ import android.widget.Toast;
 
 import com.rwilk.angielski.R;
 import com.rwilk.angielski.customview.CustomAdapter;
-import com.rwilk.angielski.database.Angielski;
-import com.rwilk.angielski.DBHelper;
+import com.rwilk.angielski.application.Angielski;
+import com.rwilk.angielski.database.DBHelper;
 import com.rwilk.angielski.database.Word;
 
 import java.util.ArrayList;
@@ -24,16 +24,11 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Locale;
 
-/**
- * Created by RWilk on 27.02.2017.
- * Level
- */
-
 public class Level extends AppCompatActivity implements TextToSpeech.OnInitListener {
 
     public static ArrayList<Word> wordListFromLevel;
     public static ArrayAdapter adapter;
-    public  ListView listViewWords;
+    public ListView listViewWords;
     private String title;
     private String subtitle;
     private Button buttonLevelRepeat;
@@ -174,7 +169,7 @@ public class Level extends AppCompatActivity implements TextToSpeech.OnInitListe
     protected void onResume() {
         super.onResume();
 
-        if(disableTeachingButton)
+        if (disableTeachingButton)
             buttonLevelTeaching.setClickable(false);
 
 
@@ -272,7 +267,6 @@ public class Level extends AppCompatActivity implements TextToSpeech.OnInitListe
             }
         }).start();
     }
-
 
 
 }

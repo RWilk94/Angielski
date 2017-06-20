@@ -6,17 +6,18 @@ import java.util.ArrayList;
 
 
 @IgnoreExtraProperties
-public class User  {
+public class User {
 
     private String idUser;
-    private String  email;
+    private String email;
     private String name;
     private long lastLogin;
     private int backup;
     //One To Many
     private ArrayList<Friend> friendList;
 
-    public User(){}
+    public User() {
+    }
 
     public User(String idUser, String email, String name) {
         this.idUser = idUser;

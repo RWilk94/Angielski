@@ -4,21 +4,17 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.pm.PackageManager;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,7 +34,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.rwilk.angielski.DBHelper;
+import com.rwilk.angielski.database.DBHelper;
 import com.rwilk.angielski.R;
 import com.rwilk.angielski.database.Points;
 import com.rwilk.angielski.database.User;
@@ -57,7 +53,6 @@ import java.util.Locale;
 
 /**
  * Fragment about. Profile, save and upload files.
- * Created by wilkr on 21.05.2017.
  */
 public class About extends Fragment implements View.OnClickListener {
 
@@ -156,8 +151,8 @@ public class About extends Fragment implements View.OnClickListener {
             verifyStoragePermissions(getActivity());
             uploadFile();
         } //else if (i == R.id.findFriend) {
-            //findFriend("wilkrafal1mizst@gmail.com");
-            //displayPopupWindow(view);
+        //findFriend("wilkrafal1mizst@gmail.com");
+        //displayPopupWindow(view);
         //}
 
     }

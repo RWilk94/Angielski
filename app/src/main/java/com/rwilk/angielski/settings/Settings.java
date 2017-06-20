@@ -5,7 +5,7 @@ import com.rwilk.angielski.database.Word;
 import java.util.ArrayList;
 
 /**
- * Created by wilkr on 30.03.2017.
+ * Klasa ustawień. Do dodania w przyszłości.
  */
 public class Settings {
     //public static boolean readPolishWord = true;

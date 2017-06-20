@@ -1,4 +1,4 @@
-package com.rwilk.angielski;
+package com.rwilk.angielski.database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -7,9 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.rwilk.angielski.database.Lesson;
-import com.rwilk.angielski.database.Points;
-import com.rwilk.angielski.database.Word;
 import com.rwilk.angielski.views.NewMainActivity;
 
 import java.util.ArrayList;
@@ -18,8 +15,7 @@ import java.util.concurrent.TimeUnit;
 
 
 /**
- * Created by RWilk on 23.02.2017.
- * Baza danych.
+ * Obsługa bazy danych.
  */
 public class DBHelper extends SQLiteOpenHelper {
 

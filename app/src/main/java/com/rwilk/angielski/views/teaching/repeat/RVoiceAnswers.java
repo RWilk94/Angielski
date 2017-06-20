@@ -3,6 +3,7 @@ package com.rwilk.angielski.views.teaching.repeat;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -223,6 +224,9 @@ public class RVoiceAnswers extends Fragment {
             buttonSpeakerFour.setTextColor(getResources().getColor(R.color.white));
             buttonSpeakerFour.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_one_of_four_correct));
         }
+        //wyświetlamy poprawną odpowiedź
+        textViewVoiceCorrectAnswers.setTextColor(ContextCompat.getColor(getContext(), R.color.green800));
+        textViewVoiceCorrectAnswers.setVisibility(View.VISIBLE);//pokazujemy napis z poprawnym tlumaczeniem
     }
 
     private void setRedBackground(int miejsceOdpowiedzi, int zaznaczonyButton) {
@@ -238,6 +242,8 @@ public class RVoiceAnswers extends Fragment {
         else if (zaznaczonyButton == 3)
             buttonSpeakerFour.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_one_of_four_wrong));
 
+        // buttonSpeakerTwo.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
+        textViewVoiceCorrectAnswers.setTextColor(ContextCompat.getColor(getContext(), R.color.redWrongAnswer));
         textViewVoiceCorrectAnswers.setVisibility(View.VISIBLE);//pokazujemy napis z poprawnym tlumaczeniem
         ((RepetitionActivity) getActivity()).decreaseListOfWordsToStudy(correctAnswer);
         //db.close(); //zamykamy baze danych

@@ -9,6 +9,7 @@
     <color name="pusty">@null</color>
     <color name="green800">#2E7D32</color>
     <color name="white">#FFFFFF</color>
+    <color name="redWrongAnswer">#E30C0C</color>
 
     <color name="redLesson">#D32F2F</color>
     <color name="yellowLesson">#FFEB3B</color>

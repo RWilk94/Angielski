@@ -11,7 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.rwilk.angielski.DBHelper;
+import com.rwilk.angielski.database.DBHelper;
 import com.rwilk.angielski.R;
 import com.rwilk.angielski.customview.CustomAdapterFragments;
 import com.rwilk.angielski.database.Lesson;
@@ -25,16 +25,15 @@ import static com.rwilk.angielski.R.layout.fragment_lessons;
 
 /**
  * ListView z fragmentami do klikania.
- * Created by wilkr on 22.05.2017.
  */
 
 public class Lessons extends Fragment {
 
-    public  ListView listViewWords;
+    public ListView listViewWords;
     public static ArrayAdapter adapter;
     public static ArrayList<Lesson> listOfLessons;
 
-    public static Lessons newInstance(){
+    public static Lessons newInstance() {
         return new Lessons();
     }
 
@@ -58,9 +57,9 @@ public class Lessons extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 DBHelper db = new DBHelper(getContext(), NewMainActivity.databaseVersion);
-                ArrayList<Word> wordListFromLevel = db.getAllWordsFromSectionX(position+1);
-                String sectionName = db.getSectionName(position+1);
-                db.setCompleted(position+1);
+                ArrayList<Word> wordListFromLevel = db.getAllWordsFromSectionX(position + 1);
+                String sectionName = db.getSectionName(position + 1);
+                db.setCompleted(position + 1);
                 //db.getCompleted(position+1);
                 db.close();
                 Intent intent = new Intent(getContext(), Level.class);

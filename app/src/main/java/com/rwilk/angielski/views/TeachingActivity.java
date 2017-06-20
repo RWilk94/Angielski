@@ -16,7 +16,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.rwilk.angielski.DBHelper;
+import com.rwilk.angielski.database.DBHelper;
 import com.rwilk.angielski.R;
 import com.rwilk.angielski.customview.TTSClass;
 import com.rwilk.angielski.database.Word;
@@ -26,12 +26,12 @@ import com.rwilk.angielski.views.teaching.VoiceAnswers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
 /**
  * Nauka, przewijane strony
- * Created by wilkr on 30.03.2017.
  */
 public class TeachingActivity extends AppCompatActivity {
 
@@ -42,14 +42,16 @@ public class TeachingActivity extends AppCompatActivity {
     public ArrayList<Word> listOfWordsToStudy = new ArrayList<>(); //listOfWordsToDatabase slowek, ktore mamy sie nauczyc
     public ArrayList<Word> listOfAllWordFromLevel = new ArrayList<>(); //listOfWordsToDatabase wszystkich slowek z poziomu
     public int sumOfProgress;
-    public int incrementOfProgress;
+    public float incrementOfProgress;
     public TTSClass ttsClass;
+    private float progress = 0;
+    private int countOfPages = 0;
 
     public static boolean wrongAnswer = false;
     public static String lastWord = "";
     public static boolean changedProgress = false;
 
-    private Toolbar myToolbar;
+    //private Toolbar myToolbar;
     /**
      * TextView, gdzie zapisujemy punkty.
      */
@@ -65,7 +67,7 @@ public class TeachingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teaching);
 
-        myToolbar = (Toolbar) findViewById(R.id.my_toolbar); //toolbar czyli pasek u gory
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar); //toolbar czyli pasek u gory
         myToolbar.setTitle("");
         toolbarPoints = (TextView) findViewById(R.id.toolbar_points);
         TextView toolbarTitle = (TextView) findViewById(R.id.toolbar_title);
@@ -103,6 +105,8 @@ public class TeachingActivity extends AppCompatActivity {
         combo = 0;
         ttsClass = new TTSClass();
         prepareWordsToStudy();
+        progress = 0;
+        countOfPages = 0;
     }
 
 
@@ -149,7 +153,7 @@ public class TeachingActivity extends AppCompatActivity {
      */
     public void calculateIncrementOfProgress() {
         if (sumOfProgress >= 100 || sumOfProgress == 0) incrementOfProgress = 10;
-        else incrementOfProgress = 100 / (sumOfProgress / 10);
+        else incrementOfProgress = (100.0f / (sumOfProgress / 10)) + 0.01f;
     }
 
     /**
@@ -158,7 +162,7 @@ public class TeachingActivity extends AppCompatActivity {
      * @param view view
      */
     public void buttonZmienStrone(View view) {
-        int trueIncrementOfProgress;
+        float trueIncrementOfProgress;
 
         if (wrongAnswer) {
             trueIncrementOfProgress = 0;
@@ -166,13 +170,16 @@ public class TeachingActivity extends AppCompatActivity {
             combo = 0;
         } else {
             trueIncrementOfProgress = incrementOfProgress;
-            points += 50+ 15*combo++;
-            toolbarPoints.setText(Integer.toString(points));
+            points += 50 + 15 * combo++;
+            toolbarPoints.setText(String.format(Locale.UK, "%d", points)); //Integer.toString(points));
+            //textViewPointsAllTime.setText(String.format(Locale.UK, "%d", points.getAllTime()));
         }
+        countOfPages++;
+        progress += trueIncrementOfProgress;
 
-        final int progress = progressBar.getProgress() + trueIncrementOfProgress; //zmienna po to, bo progress na pasku dodawany jest dopiero po 0.5 sekundy a dzieki zmiennej jest od razu
+        //final int progress = progressBar.getProgress() + trueIncrementOfProgress; //zmienna po to, bo progress na pasku dodawany jest dopiero po 0.5 sekundy a dzieki zmiennej jest od razu
 
-        ObjectAnimator animation = ObjectAnimator.ofInt(progressBar, "progress", progressBar.getProgress() + trueIncrementOfProgress);
+        ObjectAnimator animation = ObjectAnimator.ofInt(progressBar, "progress", (int) progress);
         animation.setDuration(500); // 0.5 second
         animation.setInterpolator(new DecelerateInterpolator());
         animation.start();
@@ -184,12 +191,11 @@ public class TeachingActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        if(progress >= 100) {
+                        if (progress >= 100 || countOfPages == 40) {
                             Level.updateListOfWordFromLevel(listOfWordsToStudy);
                             updatePoints(points);
-
                             finish();
-                        } else{
+                        } else {
                             mViewPager.setCurrentItem(mViewPager.getCurrentItem() + 1, true);
                         }
                     }
@@ -198,7 +204,7 @@ public class TeachingActivity extends AppCompatActivity {
         }, 1000);
     }
 
-    private void updatePoints(int points){
+    private void updatePoints(int points) {
         DBHelper db = new DBHelper(this, NewMainActivity.databaseVersion);
         db.updatePoints(points);
         db.close();

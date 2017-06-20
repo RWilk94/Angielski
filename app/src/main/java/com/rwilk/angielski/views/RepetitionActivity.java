@@ -16,7 +16,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.rwilk.angielski.DBHelper;
+import com.rwilk.angielski.database.DBHelper;
 import com.rwilk.angielski.R;
 import com.rwilk.angielski.customview.TTSClass;
 import com.rwilk.angielski.database.Word;
@@ -28,14 +28,6 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-/**
- * Nauka, przewijane strony
- * Created by wilkr on 30.03.2017.
- * Pasuje zrobić tak, że powtarzamy sobie słówko i jest fajnie. Ale...
- * W przypdaku błędnej odpowiedzi przyrostProgressu = 0
- * I wtedy zmieniamy countingRepet = 1; i na końcu powtarzamy to słowo.
- *
- */
 public class RepetitionActivity extends AppCompatActivity {
 
     public SectionsPagerAdapter mSectionsPagerAdapter;
@@ -44,7 +36,9 @@ public class RepetitionActivity extends AppCompatActivity {
     public ArrayList<Word> listOfWordsToStudy;
     public ArrayList<Word> listOfAllWordFromLevel;
     public TTSClass ttsClass;
-    public int incrementOfProgress;
+    public float incrementOfProgress;
+    private float progress = 0;
+    private int countOfPages = 0;
 
     public static int indexOfWordToStudy = 0;
     private TextView toolbarPoints;
@@ -96,18 +90,21 @@ public class RepetitionActivity extends AppCompatActivity {
         progressBar.setProgress(0);
         ttsClass = new TTSClass();
 
-        incrementOfProgress = 100 / (listOfWordsToStudy.size());
+        incrementOfProgress = (100.0f / (listOfWordsToStudy.size())) + 0.01f;
+
 
         indexOfWordToStudy = 0; //zabezpieczenie przed stara wartoscia, bo pole jest static
         setRepeatInWord();
         combo = 0;
+        progress = 0;
+        countOfPages = 0;
     }
 
     /**
      * Ustawiamy wszystkim słowom zero w polu countingRepeats.
      */
-    private void setRepeatInWord(){
-        for (Word w : listOfWordsToStudy){
+    private void setRepeatInWord() {
+        for (Word w : listOfWordsToStudy) {
             w.setCountingRepeats(0);
         }
         sizeOfWordsToRepeat = 0;
@@ -119,15 +116,15 @@ public class RepetitionActivity extends AppCompatActivity {
     public void updateListOfWordsToStudy(Word word) {
         if (listOfWordsToStudy.size() > 1) {
             listOfWordsToStudy.remove(word);
-        } else if (!listOfWordsToStudy.isEmpty()){
+        } else if (!listOfWordsToStudy.isEmpty()) {
             lastWord = listOfWordsToStudy.get(0);
             listOfWordsToStudy.remove(word);
         }
     }
 
     public void decreaseListOfWordsToStudy(Word word) {
-        listOfWordsToStudy.add(listOfWordsToStudy.size(),word);
-        listOfWordsToStudy.get(listOfWordsToStudy.size()-1).setCountingRepeats(1);
+        listOfWordsToStudy.add(listOfWordsToStudy.size(), word);
+        listOfWordsToStudy.get(listOfWordsToStudy.size() - 1).setCountingRepeats(1);
         wrongAnswer = true;
         sizeOfWordsToRepeat++;
     }
@@ -153,7 +150,7 @@ public class RepetitionActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {//zaczyna sie od zera
-           //if (position == 0) wordIndex = 0;
+            //if (position == 0) wordIndex = 0;
 
             if (position == 0 || position % 2 == 0) {
                 return RVoiceAnswers.newInstance(listOfWordsToStudy, listOfAllWordFromLevel);
@@ -182,26 +179,26 @@ public class RepetitionActivity extends AppCompatActivity {
 
         //Trzeba naprawić cały moduł powtórek, żeby trzaskać po dwa-trzy razy słowo.
 
-        int trueIncrementOfProgress; // = incrementOfProgress;
-        if(wrongAnswer) {
+        float trueIncrementOfProgress; // = incrementOfProgress;
+        if (wrongAnswer) {
             trueIncrementOfProgress = 0;
             wrongAnswer = false;
             combo = 0;
         } else {
             trueIncrementOfProgress = incrementOfProgress;
-            points += 50+ 15*combo++;
+            points += 50 + 15 * combo++;
             toolbarPoints.setText(Integer.toString(points));
         }
-        int progress = progressBar.getProgress() + trueIncrementOfProgress;
+        countOfPages++;
+        progress += trueIncrementOfProgress;
+        //float localProgress = progressBar.getProgress() + trueIncrementOfProgress;
 
-        if (android.os.Build.VERSION.SDK_INT >= 11) { //animacja updejtowania progressBara //w sumie to mozna od razu trzaskac bo minimum sdk jest wieksze
-            ObjectAnimator animation = ObjectAnimator.ofInt(progressBar, "progress", progressBar.getProgress() + trueIncrementOfProgress);
-            animation.setDuration(500); // 0.5 second
-            animation.setInterpolator(new DecelerateInterpolator());
-            animation.start();
-        } else progressBar.setProgress(progressBar.getProgress() + trueIncrementOfProgress);
+        ObjectAnimator animation = ObjectAnimator.ofInt(progressBar, "progress", (int) progress);
+        animation.setDuration(500); // 0.5 second
+        animation.setInterpolator(new DecelerateInterpolator());
+        animation.start();
 
-        if (progress >= 100) {//zamykamy activity po sekundzie
+        if (progress >= 100 || countOfPages == 40) {//zamykamy activity po sekundzie
             Timer swipeTimer = new Timer();
             swipeTimer.schedule(new TimerTask() {
                 @Override
@@ -231,7 +228,7 @@ public class RepetitionActivity extends AppCompatActivity {
         }
     }
 
-    private void updatePoints(int points){
+    private void updatePoints(int points) {
         DBHelper db = new DBHelper(this, NewMainActivity.databaseVersion);
         db.updatePoints(points);
         db.close();
