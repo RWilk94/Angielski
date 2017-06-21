@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import com.rwilk.angielski.views.NewMainActivity;
+import com.rwilk.angielski.views.fragments.Lessons;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -147,10 +148,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 WEEKLY + " )" +
                 " values ( 0 );"
         );
-
         databaseExists = true;
-        //db.close();
-
     }
 
     @Override
@@ -210,14 +208,10 @@ public class DBHelper extends SQLiteOpenHelper {
 
         for (int i = 0; i < updatedWords.size(); i++) {
             try {
-                //Cursor cursor = db.rawQuery("select * from " + TABLE_WORDS + " where " + ID_WORD + "=" + updatedWords.get(i).getId() + ";", null);
-                //cursor.moveToFirst();
-
                 ContentValues cv = new ContentValues();
                 if (updatedWords.get(i).getProgress() > 50)
                     updatedWords.get(i).setProgress(50); //zabezpieczenie przed maxem
                 cv.put(PROGRESS, updatedWords.get(i).getProgress());
-
                 db.update(TABLE_WORDS, cv, ID_WORD + " = ?", new String[]{Integer.toString(updatedWords.get(i).getId())});
                 //cursor.close();
             } catch (Exception e) {
@@ -370,7 +364,6 @@ public class DBHelper extends SQLiteOpenHelper {
                     || Calendar.getInstance().get(Calendar.DAY_OF_WEEK) < calendarLastUpdate.get(Calendar.DAY_OF_WEEK)) {
                 weekly = 0;
             }
-
             weekly += points;
             monthly += points;
             allTime += points;
@@ -382,6 +375,8 @@ public class DBHelper extends SQLiteOpenHelper {
             db.update(TABLE_POINTS, cv, ID_POINTS + " = ?", new String[]{Integer.toString(1)});
             cursor.close();
             db.close();
+            if (Lessons.lastSection > 0)
+                setCompleted(Lessons.lastSection);
             return true;
         } catch (Exception e) {
             Log.e("Database Error", "Database Error: setPoints " + e);
@@ -447,9 +442,6 @@ public class DBHelper extends SQLiteOpenHelper {
     public void setCompleted(int section) {
         SQLiteDatabase db = this.getWritableDatabase();
         try {
-            //select count(idWord)
-            //from words w
-            //where w.idSection = 4 && w.progress = 50
             Cursor cursor = db.rawQuery("select count(idWord) from " + TABLE_WORDS + " where " + ID_SECTION + "=" + section + " " +
                     "and (progress = 50 or repeat = 1);", null);
             cursor.moveToFirst();
@@ -467,37 +459,11 @@ public class DBHelper extends SQLiteOpenHelper {
             db.update(TABLE_SECTIONS, cv, ID_SECTION + " = ?", new String[]{Integer.toString(section)});
             cursor.close();
             db.close();
-            //return section/maxSection;
         } catch (Exception e) {
             Log.e("Database Error", "Database Error: setCompleted " + e);
             db.close();
-            //return -1;
         }
     }
-
-    /*public ArrayList<Word> searchSimilarWords(String searching) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        ArrayList<Word> words = new ArrayList<>();
-        try {
-            Cursor cursor = db.rawQuery("select * from " + TABLE_WORDS + " where " + ENGLISH_WORD + " LIKE '%" + searching
-                    + "%';", null);
-            cursor.moveToFirst();
-            while (!cursor.isAfterLast()) {
-                Word word = setCursor(cursor);
-                words.add(word);
-                cursor.moveToNext();
-            }
-            cursor.close();
-            //db.close();
-            return words;
-        } catch (Exception e) {
-            Log.e("DatabaseError", "DatabaseError: getAllWordsLevelOne " + e);
-            return null;
-        } finally {
-            db.close();
-        }
-    }*/
-
 
     private Word setCursor(Cursor cursor) {
         Word word = new Word();

@@ -92,7 +92,6 @@ public class RepetitionActivity extends AppCompatActivity {
 
         incrementOfProgress = (100.0f / (listOfWordsToStudy.size())) + 0.01f;
 
-
         indexOfWordToStudy = 0; //zabezpieczenie przed stara wartoscia, bo pole jest static
         setRepeatInWord();
         combo = 0;
@@ -128,7 +127,6 @@ public class RepetitionActivity extends AppCompatActivity {
         wrongAnswer = true;
         sizeOfWordsToRepeat++;
     }
-
 
     //bardzo wazna metoda
     public void ttsSpeech(String word) {
@@ -191,13 +189,10 @@ public class RepetitionActivity extends AppCompatActivity {
         }
         countOfPages++;
         progress += trueIncrementOfProgress;
-        //float localProgress = progressBar.getProgress() + trueIncrementOfProgress;
-
         ObjectAnimator animation = ObjectAnimator.ofInt(progressBar, "progress", (int) progress);
         animation.setDuration(500); // 0.5 second
         animation.setInterpolator(new DecelerateInterpolator());
         animation.start();
-
         if (progress >= 100 || countOfPages == 40) {//zamykamy activity po sekundzie
             Timer swipeTimer = new Timer();
             swipeTimer.schedule(new TimerTask() {

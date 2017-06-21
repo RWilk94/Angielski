@@ -117,8 +117,6 @@ public class About extends Fragment implements View.OnClickListener {
             }
         }
         setPoints();
-        //view.findViewById(R.id.findFriend).setOnClickListener(this);
-
         return view;
     }
 
@@ -150,11 +148,7 @@ public class About extends Fragment implements View.OnClickListener {
         } else if (i == R.id.createBackup) {
             verifyStoragePermissions(getActivity());
             uploadFile();
-        } //else if (i == R.id.findFriend) {
-        //findFriend("wilkrafal1mizst@gmail.com");
-        //displayPopupWindow(view);
-        //}
-
+        }
     }
 
     /**
@@ -339,33 +333,7 @@ public class About extends Fragment implements View.OnClickListener {
             public void onCancelled(DatabaseError databaseError) {
             }
         });
-
-        /*if (selectedUsers.isEmpty()){
-            Toast.makeText(getContext(), "Can't find friends", Toast.LENGTH_SHORT).show();
-            //return null;
-        }
-        else {
-            Toast.makeText(getContext(), "Find user:" + selectedUsers.get(0).getName(), Toast.LENGTH_SHORT).show();
-            //return selectedUsers;
-        }*/
     }
-/*
-    private void displayPopupWindow(View anchorView) {
-        PopupWindow popup = new PopupWindow(getActivity());
-        View layout = getLayoutInflater(getArguments()).inflate(R.layout.popup_content, null);
-        popup.setContentView(layout);
-        // Set content width and height
-        popup.setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
-        popup.setWidth(WindowManager.LayoutParams.WRAP_CONTENT);
-        // Closes the popup window when touch outside of it - when looses focus
-        popup.setOutsideTouchable(true);
-        popup.setFocusable(true);
-        // Show anchored to button
-        popup.setBackgroundDrawable(new BitmapDrawable());
-        //popup.showAsDropDown((anchorView);
-        popup.showAsDropDown(anchorView);
-        //popup.
-    }*/
 
     @Override
     public void setUserVisibleHint(boolean visible) {

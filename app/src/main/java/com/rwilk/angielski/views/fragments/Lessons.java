@@ -32,6 +32,7 @@ public class Lessons extends Fragment {
     public ListView listViewWords;
     public static ArrayAdapter adapter;
     public static ArrayList<Lesson> listOfLessons;
+    public static int lastSection = -1;
 
     public static Lessons newInstance() {
         return new Lessons();
@@ -46,7 +47,6 @@ public class Lessons extends Fragment {
         listViewWords = (ListView) view.findViewById(R.id.listViewAllWords);//przypisanie listView
 
         DBHelper db = new DBHelper(getContext(), NewMainActivity.databaseVersion);
-        //ArrayList<String> l
         listOfLessons = db.getAllSections();
         db.close();
 
@@ -59,21 +59,15 @@ public class Lessons extends Fragment {
                 DBHelper db = new DBHelper(getContext(), NewMainActivity.databaseVersion);
                 ArrayList<Word> wordListFromLevel = db.getAllWordsFromSectionX(position + 1);
                 String sectionName = db.getSectionName(position + 1);
-                db.setCompleted(position + 1);
-                //db.getCompleted(position+1);
+                lastSection = position + 1;
                 db.close();
                 Intent intent = new Intent(getContext(), Level.class);
                 intent.putExtra("wordsFromLevel", wordListFromLevel);
                 intent.putExtra("title", sectionName);
                 intent.putExtra("subtitle", "Lista słówek");
-
-                //setProgressBar();
-                //getProgressBar();
-
                 startActivity(intent);
             }
         });
-
         return view;
     }
 
@@ -81,27 +75,8 @@ public class Lessons extends Fragment {
     public void onResume() {
         super.onResume();
         DBHelper db = new DBHelper(getContext(), NewMainActivity.databaseVersion);
-        CustomAdapterFragments.listLessons = db.getAllSections();
+        listOfLessons = db.getAllSections();
         db.close();
         adapter.notifyDataSetChanged();
     }
-
-    /*@Override
-    public void setUserVisibleHint(boolean visible) {
-        super.setUserVisibleHint(visible);
-        if (visible && isResumed()) {
-            DBHelper db = new DBHelper(getContext(), NewMainActivity.databaseVersion);
-            //ArrayList<String> l
-            listOfLessons = db.getAllSections();
-            db.close();
-            adapter = new CustomAdapterFragments(getContext(), listOfLessons);
-            //adapter.notifyDataSetChanged();
-            listViewWords.setAdapter(adapter);
-            /*aktualizacja listOfLessons
-                    notifyDataChanged
-            setPoints();*/
-      /*  }
-    }*/
-
-
 }

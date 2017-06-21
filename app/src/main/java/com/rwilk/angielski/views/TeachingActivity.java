@@ -51,7 +51,6 @@ public class TeachingActivity extends AppCompatActivity {
     public static String lastWord = "";
     public static boolean changedProgress = false;
 
-    //private Toolbar myToolbar;
     /**
      * TextView, gdzie zapisujemy punkty.
      */
@@ -108,7 +107,6 @@ public class TeachingActivity extends AppCompatActivity {
         progress = 0;
         countOfPages = 0;
     }
-
 
     /**
      * Method call method which are responsibility for calculate increment of progress and etc.
@@ -172,13 +170,9 @@ public class TeachingActivity extends AppCompatActivity {
             trueIncrementOfProgress = incrementOfProgress;
             points += 50 + 15 * combo++;
             toolbarPoints.setText(String.format(Locale.UK, "%d", points)); //Integer.toString(points));
-            //textViewPointsAllTime.setText(String.format(Locale.UK, "%d", points.getAllTime()));
         }
         countOfPages++;
         progress += trueIncrementOfProgress;
-
-        //final int progress = progressBar.getProgress() + trueIncrementOfProgress; //zmienna po to, bo progress na pasku dodawany jest dopiero po 0.5 sekundy a dzieki zmiennej jest od razu
-
         ObjectAnimator animation = ObjectAnimator.ofInt(progressBar, "progress", (int) progress);
         animation.setDuration(500); // 0.5 second
         animation.setInterpolator(new DecelerateInterpolator());

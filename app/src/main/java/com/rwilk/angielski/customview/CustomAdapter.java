@@ -92,11 +92,10 @@ public class CustomAdapter extends ArrayAdapter<Word> {
         polishWord.setText(singleWord.getPolishWord());
 
         if (singleWord.getDifficultWord() == 1)
-            imageButtonTrudneSlowko.setImageResource(R.drawable.niebieski);//imageButtonTrudneSlowko.setVisibility(View.VISIBLE);
+            imageButtonTrudneSlowko.setImageResource(R.drawable.niebieski);
         else
-            imageButtonTrudneSlowko.setImageResource(R.drawable.szary);//imageButtonTrudneSlowko.setVisibility(View.INVISIBLE);
+            imageButtonTrudneSlowko.setImageResource(R.drawable.szary);
 
         return customView;
-        //} else return convertView;
     }
 }

@@ -42,7 +42,6 @@ public class RVoiceAnswers extends Fragment {
     public int positionToCorrectAnswer;
 
     public int markedAnswer = -1;
-   // public DBHelper db;
 
     @Nullable
     @Override
@@ -58,7 +57,6 @@ public class RVoiceAnswers extends Fragment {
         buttonSpeakerFour = (Button) view.findViewById(R.id.buttonSpeakerFour);
         buttonNextPage = (Button) view.findViewById(R.id.buttonNextPageRepeat);
         imageViewCheckAnswer = (ImageView) view.findViewById(R.id.imageViewCheckAnswer);
-
         buildTeachingView(); //budujemy widok
 
         return view;
@@ -74,18 +72,10 @@ public class RVoiceAnswers extends Fragment {
     }
 
     public void buildTeachingView() {
-        /*Collections.sort(listOfWordsToStudy, new Comparator<Word>() {  //sortujemy liste ze slowkami do nauki
-            @Override
-            public int compare(Word o1, Word o2) {
-                return o1.getProgress() - o2.getProgress(); //jako kryterium jest progress -> od najmniejszego
-            }
-        });
-        correctAnswer = listOfWordsToStudy.get(TeachingActivity.indexOfWordToStudy); */ //bierzemy slowko z najmniejszym progressem
         if (RepetitionActivity.sizeOfWordsToRepeat < listOfWordsToStudy.size())
             correctAnswer = listOfWordsToStudy.get(randomCorrectAnswer(listOfWordsToStudy.size() - RepetitionActivity.sizeOfWordsToRepeat));
         else if (!listOfWordsToStudy.isEmpty()) correctAnswer = listOfWordsToStudy.get(0);
         else correctAnswer = RepetitionActivity.lastWord;
-
         ((RepetitionActivity) getActivity()).updateListOfWordsToStudy(correctAnswer);
 
         //jednak jesli odpowiedzielismy zle to bierzemy inne slowko //resetuje sie po poprawnej odpowiedzi albo jak zrobi kolo
@@ -242,12 +232,9 @@ public class RVoiceAnswers extends Fragment {
         else if (zaznaczonyButton == 3)
             buttonSpeakerFour.setBackgroundDrawable(getResources().getDrawable(R.drawable.button_one_of_four_wrong));
 
-        // buttonSpeakerTwo.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
         textViewVoiceCorrectAnswers.setTextColor(ContextCompat.getColor(getContext(), R.color.redWrongAnswer));
         textViewVoiceCorrectAnswers.setVisibility(View.VISIBLE);//pokazujemy napis z poprawnym tlumaczeniem
         ((RepetitionActivity) getActivity()).decreaseListOfWordsToStudy(correctAnswer);
-        //db.close(); //zamykamy baze danych
-        //TeachingActivity.setIndexOfWordToStudy(listOfWordsToStudy.size()); //zmieniamy index slowa do nauki
     }
 
     @Override

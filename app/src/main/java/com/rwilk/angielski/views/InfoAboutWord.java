@@ -88,13 +88,6 @@ public class InfoAboutWord extends AppCompatActivity {
 
         public InfoAboutWordFragment() {
         }
-
-        /*private ImageView imageViewInfoAboutWord0;
-        private ImageView imageViewInfoAboutWord1;
-        private ImageView imageViewInfoAboutWord2;
-        private ImageView imageViewInfoAboutWord3;
-        private ImageView imageViewInfoAboutWord4;
-        private ImageView imageViewInfoAboutWord5;*/
         private ImageView imageViewInfoKsiazka;
         private ProgressBar progressBar;
         private TextView infoEnglishWord;
@@ -109,13 +102,6 @@ public class InfoAboutWord extends AppCompatActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
             View view = inflater.inflate(fragment_info_about_word, container, false);
-
-            /*imageViewInfoAboutWord0 = (ImageView) view.findViewById(R.id.imageViewInfoAboutWord0);
-            imageViewInfoAboutWord1 = (ImageView) view.findViewById(R.id.imageViewInfoAboutWord1);
-            imageViewInfoAboutWord2 = (ImageView) view.findViewById(R.id.imageViewInfoAboutWord2);
-            imageViewInfoAboutWord3 = (ImageView) view.findViewById(R.id.imageViewInfoAboutWord3);
-            imageViewInfoAboutWord4 = (ImageView) view.findViewById(R.id.imageViewInfoAboutWord4);
-            imageViewInfoAboutWord5 = (ImageView) view.findViewById(R.id.imageViewInfoAboutWord5);*/
             imageViewInfoKsiazka = (ImageView) view.findViewById(R.id.imageViewInfoKsiazka);
             infoEnglishWord = (TextView) view.findViewById(R.id.infoEnglishWord);
             infoPolishWord = (TextView) view.findViewById(R.id.infoPolishWord);
@@ -197,7 +183,6 @@ public class InfoAboutWord extends AppCompatActivity {
             if (word.getRepeat() == 1) progressToSet = 50;
             else progressToSet = word.getProgress();
             if (progressBar.getProgress() == 100) progressBar.setProgress(0);
-            //progressBar.setProgress(word.getProgress()*2);
 
             if (android.os.Build.VERSION.SDK_INT >= 11) { //animacja updejtowania progressBara //w sumie to mozna od razu trzaskac bo minimum sdk jest wieksze
                 ObjectAnimator animation = ObjectAnimator.ofInt(progressBar, "progress", progressToSet * 2);
@@ -230,22 +215,6 @@ public class InfoAboutWord extends AppCompatActivity {
                     default:
                 }
             }
-            /*imageViewInfoAboutWord0.setImageResource(R.drawable.potworek0);
-            if (word.getProgress() >= 10 || word.getRepeat() == 1)
-                imageViewInfoAboutWord1.setImageResource(R.drawable.potworek1);
-            else imageViewInfoAboutWord1.setImageResource(R.drawable.potworek1czarny);
-            if (word.getProgress() >= 20 || word.getRepeat() == 1)
-                imageViewInfoAboutWord2.setImageResource(R.drawable.potworek2);
-            else imageViewInfoAboutWord2.setImageResource(R.drawable.potworek2czarny);
-            if (word.getProgress() >= 30 || word.getRepeat() == 1)
-                imageViewInfoAboutWord3.setImageResource(R.drawable.potworek3);
-            else imageViewInfoAboutWord3.setImageResource(R.drawable.potworek3czarny);
-            if (word.getProgress() >= 40 || word.getRepeat() == 1)
-                imageViewInfoAboutWord4.setImageResource(R.drawable.potworek4);
-            else imageViewInfoAboutWord4.setImageResource(R.drawable.potworek4czarny);
-            if (word.getProgress() >= 50 || word.getRepeat() == 1)
-                imageViewInfoAboutWord5.setImageResource(R.drawable.potworek5);
-            else imageViewInfoAboutWord5.setImageResource(R.drawable.potworek5czarny);*/
         }
 
         @Override

@@ -88,15 +88,6 @@ public class Level extends AppCompatActivity implements TextToSpeech.OnInitListe
 
     }
 
-
-    public ProgressDialog progressDialog;
-
-    public void showProgressDialog() {
-        progressDialog = ProgressDialog.show(this,
-                "TTS", "Connecting to TextToSpeech", true);
-        // progressDialog.show();
-    }
-
     public static void changeDifficultWord(final int id) {
         new Thread(new Runnable() {
             @Override
@@ -161,7 +152,6 @@ public class Level extends AppCompatActivity implements TextToSpeech.OnInitListe
         }).start();
         adapter.notifyDataSetChanged();
     }
-
 
     public static boolean disableTeachingButton = false;
 
@@ -250,7 +240,6 @@ public class Level extends AppCompatActivity implements TextToSpeech.OnInitListe
             textToSpeech.stop();
             textToSpeech.shutdown();
         }
-        //ttsClass = null;
         super.onDestroy();
     }
 
@@ -267,6 +256,4 @@ public class Level extends AppCompatActivity implements TextToSpeech.OnInitListe
             }
         }).start();
     }
-
-
 }

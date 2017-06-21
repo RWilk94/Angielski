@@ -35,7 +35,6 @@ public class SelectOfRepeat extends Activity {
             return;
         }
         listOfAllWordFromLevel = (ArrayList<Word>) bundle.get("Lista");
-
         //ustawiamy wyswietlanie activity od dolu na 0.3
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
@@ -43,8 +42,6 @@ public class SelectOfRepeat extends Activity {
         int height = dm.heightPixels;
         getWindow().setLayout((width), (int) (height * 0.3));
         getWindow().setGravity(Gravity.BOTTOM);
-
-        //db = new DBHelper(getBaseContext());
     }
 
     @Override
@@ -92,7 +89,6 @@ public class SelectOfRepeat extends Activity {
             }
         });
     }
-
 
     @Override
     protected void onDestroy() {

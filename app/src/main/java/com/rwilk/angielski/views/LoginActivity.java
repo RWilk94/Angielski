@@ -73,8 +73,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         if (currentUser != null)
             updateUserInDatabase();
         openMainActivity(currentUser);
-
-
     }
 
     @Override

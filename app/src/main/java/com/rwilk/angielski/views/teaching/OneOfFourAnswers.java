@@ -79,16 +79,12 @@ public class OneOfFourAnswers extends Fragment {
                 return o1.getProgress() - o2.getProgress(); //jako kryterium jest progress -> od najmniejszego
             }
         });
-
         correctAnswer = listOfWordsToStudy.get(0);
         if (listOfWordsToStudy.size() >= 2 && TeachingActivity.lastWord.equals(correctAnswer.getEnglishWord()))
             correctAnswer = listOfWordsToStudy.get(1);
-
             TeachingActivity.lastWord = correctAnswer.getEnglishWord();
-
             //update na zapas
             ((TeachingActivity) getActivity()).updateListOfWordsToStudy(correctAnswer.getId());
-
             positionToCorrectAnswer = randomPositionToCorrectAnswer(); //wylosujemy miejsce gdzie wrzucimy poprawna odpowiedz
             wrongAnswers = randomWordToWrongAnswers(correctAnswer); //losujemy 4 slowka na bledne odpowiedzi //4 --> zeby nie bawic sie pozniej ze sprawdzaniem
             textViewOneOfFourWord.setText(correctAnswer.getPolishWord());
