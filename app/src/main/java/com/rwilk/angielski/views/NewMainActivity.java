@@ -15,8 +15,10 @@ import android.support.v7.widget.Toolbar;
 
 import com.rwilk.angielski.database.DBHelper;
 import com.rwilk.angielski.R;
+import com.rwilk.angielski.database.User;
 import com.rwilk.angielski.database.Word;
 import com.rwilk.angielski.database.WordSQL;
+import com.rwilk.angielski.file.CheckIfUserIsLogin;
 import com.rwilk.angielski.views.fragments.About;
 import com.rwilk.angielski.views.fragments.Lessons;
 
@@ -33,10 +35,7 @@ import java.util.ArrayList;
 public class NewMainActivity extends AppCompatActivity {
 
     /** Wersja bazy danych. Zmienna używana przy tworzeniu obiektu klasy DBHelper i dostępie do bazy danych.  */
-    public static int databaseVersion = 1;
-
-    /** Lista słówek pobranych z pliku, używana do tworzenia bazy danych. */
-    public static ArrayList<WordSQL> listOfWordsToDatabase;
+    public static int databaseVersion = 6;
 
     /**
      * Metoda wywoływana w momencie, kiedy widok (activity) jest tworzony.
@@ -57,6 +56,7 @@ public class NewMainActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeAsUpIndicator(getLogo());
         }
+        //checkIfUserIsLogin();
         SectionsPagerAdapter mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         ViewPager mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
@@ -64,7 +64,8 @@ public class NewMainActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(mViewPager);
         tabLayout.getTabAt(0).setIcon(R.drawable.mozg);
         tabLayout.getTabAt(1).setIcon(R.drawable.settings);
-        createDatabase();
+
+
     }
 
 
@@ -140,62 +141,10 @@ public class NewMainActivity extends AppCompatActivity {
     }
 
     /**
-     * Metoda wczytuje plik, przetwarza go i zwraca listę słówke, z których zbudujemy bazę danych.
-     * @return lista słówek na podstawie której jest budowana baza danych.
+     * Bardzo ważna metoda. Sprawdza czy użytkownik jest zalogowany.
+     * Odpowiada za synchronizację.
      */
-    public ArrayList<WordSQL> odczytZPliku() {
-        BufferedReader reader = null;
-        String polishWord = "", englishWord = "", partOfSpeech = "", section = "";
-        ArrayList<WordSQL> listaSlowZPliku = new ArrayList<>();
-        try {
-            reader = new BufferedReader(
-                    new InputStreamReader(getAssets().open("words.txt"), "UTF-8"));
-            String mLine;
-            while ((mLine = reader.readLine()) != null) {
-                if (mLine.isEmpty()) continue;
-                else if (mLine.substring(0, 3).equalsIgnoreCase("//*")) {
-                    section = "'" + mLine.substring(3) + "'";
-                } else if (mLine.substring(0, 2).equalsIgnoreCase("//")) {
-                    partOfSpeech = mLine.substring(2);
-                } else {
-                    int tabulator = mLine.indexOf("\t"); //znajdujemy tabulator
-                    if (tabulator != -1) {
-                        englishWord = mLine.substring(0, tabulator); //wycinamy polskie słowo
-                        polishWord = mLine.substring(tabulator + 1, mLine.length());
-                    }
-                    String sql = "'" + polishWord + "', '" + englishWord + "', '"  + partOfSpeech + "'";
-                    WordSQL wordSQL = new WordSQL();
-                    wordSQL.setSql(sql);
-                    wordSQL.setSection(section);
-                    listaSlowZPliku.add(wordSQL);
-                }
-            }
-        } catch (IOException e) {
-            System.out.println("Error ---------------------------- Error");
-        } finally {
-            if (reader != null) {
-                try {
-                    reader.close();
-                } catch (IOException e) {
-                    System.out.println("Error ---------------------------- Error2");
-                }
-            }
-        }
-        return listaSlowZPliku;
-    }
 
-    /**
-     * Metoda tworzy bazę danych SQLite.
-     */
-    private void createDatabase() {
-        DBHelper db;
-        System.out.println("DB " + DBHelper.databaseExists);
-        if (!DBHelper.databaseExists) {
-            listOfWordsToDatabase = odczytZPliku();
-        }
-        db = new DBHelper(getApplicationContext(), null, databaseVersion);
-        System.out.println("DB " + DBHelper.databaseExists);
-        db.updatePoints(0);
-        db.close();
-    }
+
+
 }

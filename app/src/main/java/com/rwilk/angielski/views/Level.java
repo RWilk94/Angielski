@@ -94,9 +94,9 @@ public class Level extends AppCompatActivity implements TextToSpeech.OnInitListe
             public void run() {
                 for (int i = 0; i < wordListFromLevel.size(); i++) {
                     if (wordListFromLevel.get(i).getId() == id) {
-                        if (wordListFromLevel.get(i).getDifficultWord() == 1)
-                            wordListFromLevel.get(i).setDifficultWord(0);
-                        else wordListFromLevel.get(i).setDifficultWord(1);
+                        if (wordListFromLevel.get(i).getDifficult() == 1)
+                            wordListFromLevel.get(i).setDifficult(0);
+                        else wordListFromLevel.get(i).setDifficult(1);
                     }
                 }
             }

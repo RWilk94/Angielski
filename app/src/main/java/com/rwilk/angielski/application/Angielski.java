@@ -10,10 +10,12 @@ import android.content.Context;
 public class Angielski extends Application {
 
     public static Context context;
+    public static Activity activity;
 
     public void onCreate() {
         super.onCreate();
         Angielski.context = getApplicationContext();
+        Angielski.activity = getActivity();
     }
 
     public static Context getAppContext() {
@@ -21,6 +23,6 @@ public class Angielski extends Application {
     }
 
     public static Activity getActivity() {
-        return Angielski.getActivity();
+        return Angielski.activity;
     }
 }

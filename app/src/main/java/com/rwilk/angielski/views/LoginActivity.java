@@ -24,15 +24,19 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.rwilk.angielski.R;
+import com.rwilk.angielski.database.DBHelper;
+import com.rwilk.angielski.database.firebase.FirebaseServer;
 import com.rwilk.angielski.database.User;
+import com.rwilk.angielski.database.WordSQL;
 
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+
 
 /**
  * LoginActivity jest to klasa odpowiedzialna za logowanie do aplikacji za pomocą konta Google.
@@ -44,16 +48,21 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     public static FirebaseAuth mAuth;
     public GoogleApiClient mGoogleApiClient;
     public GoogleSignInOptions gso;
+    private DatabaseReference mDatabase;
+    public static User userInFirebase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.i("LoginActivity", "OnCreateMethod + start");
         setContentView(R.layout.activity_login);
 
         findViewById(R.id.skipLogin).setOnClickListener(this);
         findViewById(R.id.signInButton).setOnClickListener(this);
         findViewById(R.id.signOutButton).setOnClickListener(this);
         findViewById(R.id.disconnectButton).setOnClickListener(this);
+
+        createDatabase();
 
         FirebaseApp.initializeApp(this);
 
@@ -68,20 +77,15 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 .build();
 
         mAuth = FirebaseAuth.getInstance();
-
+        //addUserToDatabase(mAuth.getCurrentUser());
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser != null)
-            updateUserInDatabase();
         openMainActivity(currentUser);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
+        Log.i("LoginActivity", "OnCreateMethod + end");
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.i("LoginActivity", "onActivityResult + start");
         super.onActivityResult(requestCode, resultCode, data);
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
@@ -92,9 +96,11 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 firebaseAuthWithGoogle(account);
             }
         }
+        Log.i("LoginActivity", "onActivityResult + end");
     }
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
+        Log.i("LoginActivity", "firebaseAuthWithGoogle + start");
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -108,17 +114,21 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                             Toast.makeText(LoginActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         }
-                        addUserToDatabase(mAuth.getCurrentUser());
+                        addUserToDatabase();
                     }
                 });
+        Log.i("LoginActivity", "firebaseAuthWithGoogle + end");
     }
 
     private void signIn() {
+        Log.i("LoginActivity", "signIn + start");
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_SIGN_IN);
+        Log.i("LoginActivity", "signIn + end");
     }
 
     public void signOut() {
+        Log.i("LoginActivity", "signOut + start");
         mAuth.signOut();
         Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
                 new ResultCallback<Status>() {
@@ -127,11 +137,12 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                         updateUI(null);
                     }
                 });
+        Log.i("LoginActivity", "signOut + end");
     }
 
     public void revokeAccess() {
+        Log.i("LoginActivity", "revokeAccess + start");
         mAuth.signOut();
-
         Auth.GoogleSignInApi.revokeAccess(mGoogleApiClient).setResultCallback(
                 new ResultCallback<Status>() {
                     @Override
@@ -139,28 +150,44 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                         updateUI(null);
                     }
                 });
+        Log.i("LoginActivity", "revokeAccess + end");
     }
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+        Log.i("LoginActivity", "onConnectionFailed + start");
         Log.d(TAG, "onConnectionFailed:" + connectionResult);
         Toast.makeText(this, "Google Play Services error.", Toast.LENGTH_SHORT).show();
+        Log.i("LoginActivity", "onConnectionFailed + end");
     }
 
     private void openMainActivity(FirebaseUser user) {
+        Log.i("LoginActivity", "openMainActivity + start");
         if (user != null) {
             updateUI(user);
+            FirebaseServer firebaseServer = new FirebaseServer(getApplicationContext());
+            firebaseServer.skipLoginToFirebase();
             Intent intent = new Intent(this, NewMainActivity.class);
             startActivity(intent);
         }
+        Log.i("LoginActivity", "openMainActivity + end");
     }
 
     private void skipLogin() {
+        Log.i("LoginActivity", "skipLogin + start");
+        //checkIfUserIsLogin();
+
+        FirebaseServer firebaseServer = new FirebaseServer(getApplicationContext());
+        firebaseServer.skipLoginToFirebase();
+
+        //get
         Intent intent = new Intent(this, NewMainActivity.class);
         startActivity(intent);
+        Log.i("LoginActivity", "skipLogin + end");
     }
 
     private void updateUI(FirebaseUser user) {
+        Log.i("LoginActivity", "updateUI + start");
         if (user != null) {
             findViewById(R.id.signInButton).setVisibility(View.GONE);
             findViewById(R.id.signOutAndDisconnect).setVisibility(View.VISIBLE);
@@ -168,11 +195,12 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             findViewById(R.id.signInButton).setVisibility(View.VISIBLE);
             findViewById(R.id.signOutAndDisconnect).setVisibility(View.GONE);
         }
+        Log.i("LoginActivity", "updateUI + end");
     }
-
 
     @Override
     public void onClick(View view) {
+        Log.i("LoginActivity", "onClick + start");
         int i = view.getId();
         if (i == R.id.signInButton) {
             signIn();
@@ -183,80 +211,120 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         } else if (i == R.id.signOutButton) {
             signOut();
         }
+        Log.i("LoginActivity", "onClick + end");
     }
 
-    private DatabaseReference mDatabase;
+
+    //public boolean zmienna = false;
 
     /**
-     * Method add user to Firebase database.
+     * Metoda zostaje wywołana w momencie, kiedy wybieramy konto do logowania.
      */
-    public void addUserToDatabase(FirebaseUser firebaseUser) {
-        if (firebaseUser != null) {
-            mDatabase = FirebaseDatabase.getInstance().getReference("Users/" + firebaseUser.getUid());
+    public void addUserToDatabase() {
+        //Sprawdzamy czy użytkownik jest w bazie danych Firebase
+        FirebaseServer firebaseServer = new FirebaseServer(getApplicationContext());
+        firebaseServer.firstLoginToFirebase();
+    }
 
-            String userId = firebaseUser.getUid();
-            User user = new User(userId, firebaseUser.getEmail(), firebaseUser.getDisplayName());
-            mDatabase.setValue(user);
+    /** Lista słówek pobranych z pliku, używana do tworzenia bazy danych. */
+    public static ArrayList<WordSQL> listOfWordsToDatabase;
+
+    /**
+     * Metoda tworzy bazę danych SQLite.
+     */
+    private void createDatabase() {
+        Log.i("addUserToDatabase", "createDatabase + start");
+        DBHelper db;
+        System.out.println("DB " + DBHelper.databaseExists);
+        if (!DBHelper.databaseExists) {
+            listOfWordsToDatabase = odczytZPliku();
         }
+        db = new DBHelper(getApplicationContext(), null, NewMainActivity.databaseVersion);
+        System.out.println("DB " + DBHelper.databaseExists);
+        //db.updatePoints(0);
+        db.close();
+        Log.i("addUserToDatabase", "createDatabase + end");
     }
 
     /**
-     * Method update time of lastLogin when user run the app.
+     * Metoda wczytuje plik, przetwarza go i zwraca listę słówke, z których zbudujemy bazę danych.
+     * @return lista słówek na podstawie której jest budowana baza danych.
      */
-    public void updateUserInDatabase() {
-        mDatabase = FirebaseDatabase.getInstance().getReference("Users");
-        mDatabase.child(mAuth.getCurrentUser().getUid()).child("lastLogin").setValue(System.currentTimeMillis());
-    }
-
-
-    public void readDataFromDatabase() {
-        mDatabase.child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                User user = dataSnapshot.getValue(User.class);
-                Log.w(TAG, "User name: " + user.getName() + ", email " + user.getEmail());
-                Log.w(TAG, "User name: " + user.getName() + ", email " + user.getEmail());
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException());
-            }
-        });
-    }
-
-    /**
-     * Method find user in database which has email equal given by user.
-     *
-     * @param email user email
-     * @return ArrayList<User> if find or null if user does not exist.
-     */
-    public ArrayList<User> findFriend(final String email) {
-        final ArrayList<User> selectedUsers = new ArrayList<>();
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference = database.getReference();
-        databaseReference.child("Users").addValueEventListener(new ValueEventListener() {
-
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Iterable<DataSnapshot> children = dataSnapshot.getChildren();
-
-                for (DataSnapshot child : children) {
-                    User user = child.getValue(User.class);
-                    if (user.getEmail().equalsIgnoreCase(email))
-                        selectedUsers.add(user);
+    public ArrayList<WordSQL> odczytZPliku() {
+        Log.i("addUserToDatabase", "odczytZPliku + start");
+        BufferedReader reader = null;
+        String polishWord = "", englishWord = "", partOfSpeech = "", section = "";
+        ArrayList<WordSQL> listaSlowZPliku = new ArrayList<>();
+        try {
+            reader = new BufferedReader(
+                    new InputStreamReader(getAssets().open("words.txt"), "UTF-8"));
+            String mLine;
+            while ((mLine = reader.readLine()) != null) {
+                if (mLine.isEmpty()) continue;
+                else if (mLine.substring(0, 3).equalsIgnoreCase("//*")) {
+                    section = "'" + mLine.substring(3) + "'";
+                } else if (mLine.substring(0, 2).equalsIgnoreCase("//")) {
+                    partOfSpeech = mLine.substring(2);
+                } else {
+                    int tabulator = mLine.indexOf("\t"); //znajdujemy tabulator
+                    if (tabulator != -1) {
+                        englishWord = mLine.substring(0, tabulator); //wycinamy polskie słowo
+                        polishWord = mLine.substring(tabulator + 1, mLine.length());
+                    }
+                    String sql = "'" + polishWord + "', '" + englishWord + "', '"  + partOfSpeech + "'";
+                    WordSQL wordSQL = new WordSQL();
+                    wordSQL.setSql(sql);
+                    wordSQL.setSection(section);
+                    listaSlowZPliku.add(wordSQL);
                 }
             }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+        } catch (IOException e) {
+            System.out.println("Error ---------------------------- Error");
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    System.out.println("Error ---------------------------- Error2");
+                }
             }
-        });
-        if (selectedUsers.isEmpty()) {
-            Toast.makeText(getApplicationContext(), "Can't find friends", Toast.LENGTH_SHORT).show();
-            return null;
-        } else return selectedUsers;
+        }
+        Log.i("addUserToDatabase", "odczytZPliku + end");
+        return listaSlowZPliku;
     }
+
+    /*public void checkIfUserIsLogin(){
+        Log.i("addUserToDatabase", "checkIfUserIsLogin + start");
+        DBHelper db = new DBHelper(getApplicationContext(), NewMainActivity.databaseVersion);
+        User localUser;
+        if (LoginActivity.mAuth != null && LoginActivity.mAuth.getCurrentUser()!= null){
+            localUser = db.getUser(LoginActivity.mAuth.getCurrentUser().getUid());
+            //long currentTimeMillis = System.currentTimeMillis();
+            if (localUser == null){
+                //Tworzymy lokalnego uzytkownika z emailem pobranym z konta Google
+                db.insertOrUpdateUser(new User(LoginActivity.mAuth.getCurrentUser().getUid(), null, System.currentTimeMillis(), 0, 0, 0, 0));
+                //aktualizujemy czas w Firebase
+                mDatabase.child(mAuth.getCurrentUser().getUid()).child("lastLogin").setValue(System.currentTimeMillis());
+            } else {
+                localUser.setLastLogin(System.currentTimeMillis());
+                db.insertOrUpdateUser(localUser);
+                mDatabase.child(mAuth.getCurrentUser().getUid()).child("lastLogin").setValue(System.currentTimeMillis());
+            }
+        //Teraz przypadek, kiedy sie nie logujemy
+        } else {
+            localUser = db.getUser("0000");
+            if (localUser == null){
+                db.insertOrUpdateUser(new User("0000", null, System.currentTimeMillis(), 0, 0, 0, 0));
+            }
+            else {
+                localUser.setLastLogin(System.currentTimeMillis());
+                db.insertOrUpdateUser(localUser);
+            }
+        }
+        db.close();
+        Log.i("addUserToDatabase", "checkIfUserIsLogin + end");
+    }*/
+
+
+
 }

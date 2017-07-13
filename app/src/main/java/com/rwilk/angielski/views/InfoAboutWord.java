@@ -154,7 +154,7 @@ public class InfoAboutWord extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     db.setDifficult(currentWord.getId()); //ustawiamy w bazie danych
-                    currentWord.setDifficultWord(db.getDifficult(currentWord.getId())); //ustawiamy w parametrach slowka
+                    currentWord.setDifficult(db.getDifficult(currentWord.getId())); //ustawiamy w parametrach slowka
                     Level.changeDifficultWord(currentWord.getId()); //zmieniamy obrazek na liscie w Levelu
                     setImageOfDifficultWord(currentWord.getId()); //ustawiamy obrazek dla trudnego slowka
                 }

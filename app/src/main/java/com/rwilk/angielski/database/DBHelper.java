@@ -7,12 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.rwilk.angielski.views.NewMainActivity;
-import com.rwilk.angielski.views.fragments.Lessons;
+import com.rwilk.angielski.views.LoginActivity;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -42,6 +39,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String ID_SECTION = "idSection";
     private static final String COUNTING_REPEATS = "countingRepeats";
     private static final String PART_OF_SPEECH = "partOfSpeech";
+    private static final String TIME_TO_REPEAT = "timeToRepeat";
 
     // Table Users column names
     private static final String ID_USER = "idUser";
@@ -65,24 +63,40 @@ public class DBHelper extends SQLiteOpenHelper {
     //private static final String ID_SECTION = "idSections";
     private static final String COMPLETED = "completed";
 
+    /**
+     * Tabelę użytkowników tworzymy pustą. Przy pierwszym uruchomieniu dodajemy użytkownika (jeśli zalogowany)
+     * lub tworzymy z pustym email'em (jeżeli nie zalogowany).
+     * W przypadku zalogowania nadpisujemy wiersz.
+     * W przypadku zalogowania na inne konto - dodajemy drugi wiersz i NIE resetujemy bazy danych.
+     */
     private static final String CREATE_TABLE_USERS = "CREATE TABLE IF NOT EXISTS " + TABLE_USERS + "(" +
-            ID_USER + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            EMAIL + " TEXT NOT NULL UNIQUE, " +
+            ID_USER + " TEXT PRIMARY KEY, " +
+            EMAIL + " TEXT, " +
             LAST_LOGIN + " INTEGER, " +
+            WEEKLY + " INTEGER DEFAULT 0, " +
+            MONTHLY + " INTEGER DEFAULT 0, " +
+            All_TIME + " INTEGER DEFAULT 0," +
             BACKUP + " INTEGER" + ");";
 
-    private static final String CREATE_TABLE_POINTS = "CREATE TABLE IF NOT EXISTS " + TABLE_POINTS + "(" +
+    /*private static final String CREATE_TABLE_POINTS = "CREATE TABLE IF NOT EXISTS " + TABLE_POINTS + "(" +
             ID_POINTS + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             WEEKLY + " INTEGER DEFAULT 0, " +
             MONTHLY + " INTEGER DEFAULT 0, " +
             LAST_UPDATE + " INTEGER DEFAULT 0, " +
-            All_TIME + " INTEGER DEFAULT 0" + ");";
+            All_TIME + " INTEGER DEFAULT 0" + ");";*/
 
+    /**
+     * Tworzymy pustą tabelę przyjaciół.
+     * Przyjaciół dodajemy za pomocą specjalnego przycisku.
+     * Aktualizujemy co kliknięcie? Albo jak jest widoczny.
+     */
     private static final String CREATE_TABLE_FRIENDS = "CREATE TABLE IF NOT EXISTS " + TABLE_FRIENDS + "(" +
             ID_FRIENDS + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            NAME + " TEXT NOT NULL, " +
+            NAME + " TEXT, " +
+            EMAIL + " TEXT NOT NULL UNIQUE, " +
             WEEKLY + " INTEGER DEFAULT 0, " +
             MONTHLY + " INTEGER DEFAULT 0, " +
+            ID_USER + " INTEGER NOT NULL, " +
             All_TIME + " INTEGER DEFAULT 0" + ");";
 
     private static final String CREATE_TABLE_WORDS = "CREATE TABLE IF NOT EXISTS " + TABLE_WORDS + "(" +
@@ -94,7 +108,8 @@ public class DBHelper extends SQLiteOpenHelper {
             DIFFICULT + " INTEGER DEFAULT 0, " +
             REPEAT + " INTEGER DEFAULT 0, " +
             PART_OF_SPEECH + " TEXT NOT NULL, " +
-            COUNTING_REPEATS + " INTEGER DEFAULT 0 " + ");";
+            TIME_TO_REPEAT + " INTEGER, " +
+            COUNTING_REPEATS + " INTEGER DEFAULT 2 " + ");";
 
     private static final String CREATE_TABLE_SECTIONS = "CREATE TABLE IF NOT EXISTS " + TABLE_SECTIONS + "(" +
             ID_SECTION + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -117,55 +132,61 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        db.execSQL(CREATE_TABLE_SECTIONS);
         db.execSQL(CREATE_TABLE_WORDS);
         db.execSQL(CREATE_TABLE_USERS);
-        db.execSQL(CREATE_TABLE_POINTS);
+        //db.execSQL(CREATE_TABLE_POINTS);
         db.execSQL(CREATE_TABLE_FRIENDS);
-        db.execSQL(CREATE_TABLE_SECTIONS);
 
-        if (NewMainActivity.listOfWordsToDatabase == null)
+
+        if (LoginActivity.listOfWordsToDatabase == null)
             return;
 
         ArrayList<String> word = new ArrayList<>();
-        for (int i = 0; i < NewMainActivity.listOfWordsToDatabase.size(); i++) {
-            if (!word.contains(NewMainActivity.listOfWordsToDatabase.get(i).getSection())) {
+        for (int i = 0; i < LoginActivity.listOfWordsToDatabase.size(); i++) {
+            if (!word.contains(LoginActivity.listOfWordsToDatabase.get(i).getSection())) {
                 db.execSQL("INSERT INTO " + TABLE_SECTIONS + " (" + NAME + ") VALUES (" +
-                        NewMainActivity.listOfWordsToDatabase.get(i).getSection() + " );"
+                        LoginActivity.listOfWordsToDatabase.get(i).getSection() + " );"
                 );
-                word.add(NewMainActivity.listOfWordsToDatabase.get(i).getSection());
+                word.add(LoginActivity.listOfWordsToDatabase.get(i).getSection());
             }
         }
-        for (int i = 0; i < NewMainActivity.listOfWordsToDatabase.size(); i++) {
+        for (int i = 0; i < LoginActivity.listOfWordsToDatabase.size(); i++) {
             db.execSQL("INSERT INTO " + TABLE_WORDS + " (" +
                     POLISH_WORD + ", " + ENGLISH_WORD + ", " + PART_OF_SPEECH + ", " + ID_SECTION + ")" +
-                    " values (" + NewMainActivity.listOfWordsToDatabase.get(i).getSql() + ", "
+                    " values (" + LoginActivity.listOfWordsToDatabase.get(i).getSql() + ", "
                     + "( SELECT s." + ID_SECTION + " FROM " + TABLE_SECTIONS + " as s WHERE s." + NAME
-                    + " = " + NewMainActivity.listOfWordsToDatabase.get(i).getSection()
+                    + " = " + LoginActivity.listOfWordsToDatabase.get(i).getSection()
                     + ")" + ");"
             );
         }
-        db.execSQL("INSERT INTO " + TABLE_POINTS + " (" +
-                WEEKLY + " )" +
-                " values ( 0 );"
-        );
+
+        //Tworzymy domyślnego użytkownika
+        //insertOrUpdateUser(new User("0000", null, System.currentTimeMillis(), 0, 0, 0, 0));
         databaseExists = true;
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
+        databaseExists = false;
         db.execSQL("drop table if exists " + TABLE_WORDS + " ;");
         db.execSQL("drop table if exists " + TABLE_SECTIONS + " ;");
+        db.execSQL("drop table if exists " + TABLE_USERS + " ;");
+        db.execSQL("drop table if exists " + TABLE_FRIENDS + " ;");
         db.execSQL("drop table if exists " + TABLE_POINTS + " ;");
-        if (NewMainActivity.listOfWordsToDatabase != null)
+        if (LoginActivity.listOfWordsToDatabase != null)
             onCreate(db);
     }
 
     @Override
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        databaseExists = false;
         db.execSQL("drop table if exists " + TABLE_WORDS + " ;");
         db.execSQL("drop table if exists " + TABLE_SECTIONS + " ;");
+        db.execSQL("drop table if exists " + TABLE_USERS + " ;");
+        db.execSQL("drop table if exists " + TABLE_FRIENDS + " ;");
         db.execSQL("drop table if exists " + TABLE_POINTS + " ;");
-        if (NewMainActivity.listOfWordsToDatabase != null)
+        if (LoginActivity.listOfWordsToDatabase != null)
             onCreate(db);
     }
 
@@ -267,7 +288,7 @@ public class DBHelper extends SQLiteOpenHelper {
             Word word = setCursor(cursor);
             cursor.close();
             db.close();
-            return word.getDifficultWord();
+            return word.getDifficult();
         } catch (Exception e) {
             Log.e("Database Error", "Database Error: getDifficult" + e);
             return -1;
@@ -327,13 +348,13 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    /**
+    /*
      * Metoda aktualizuje ilość zdobytych punktów. Aktualizuje rankingi: tygodniowy, mieszięczny i ogólny.
      *
      * @param points ilość punktów zdobytych w danej sesji nauki
      * @return true jeśli zmiana się udała, false jeśli błąd
      */
-    public boolean updatePoints(int points) {
+    /*public boolean updatePoints(int points) {// trzeba bedzie podawac usera
         SQLiteDatabase db = this.getWritableDatabase();
 
         try {
@@ -352,14 +373,14 @@ public class DBHelper extends SQLiteOpenHelper {
                 weekly = 0;
             }
             /* Jeśli od ostatniego updatu zmienił się miesiąc lub jeśli minęło więcej niż 31 dni */
-            if (Calendar.getInstance().get(Calendar.MONTH) != calendarLastUpdate.get(Calendar.MONTH)
+            /*if (Calendar.getInstance().get(Calendar.MONTH) != calendarLastUpdate.get(Calendar.MONTH)
                     || Calendar.getInstance().getTimeInMillis() - calendarLastUpdate.getTimeInMillis() >= TimeUnit.DAYS.toMillis(31)) {
                 monthly = 0;
             }
             /* Resetujemy tygodniowy licznik, jeśli poprzednio nie był poniedziałek a teraz jest poniedziałek */
-            //Lub jeśli poprzednio był wyższy nr. dnia niż jest teraz, np. był czwartek a teraz jest środa
-            //Oznacza to, że nie logowaliśmy się prawie tydzień i minął poniedziałek
-            if ((calendarLastUpdate.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY
+    //Lub jeśli poprzednio był wyższy nr. dnia niż jest teraz, np. był czwartek a teraz jest środa
+    //Oznacza to, że nie logowaliśmy się prawie tydzień i minął poniedziałek
+            /*if ((calendarLastUpdate.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY
                     && Calendar.getInstance().get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY)
                     || Calendar.getInstance().get(Calendar.DAY_OF_WEEK) < calendarLastUpdate.get(Calendar.DAY_OF_WEEK)) {
                 weekly = 0;
@@ -383,14 +404,14 @@ public class DBHelper extends SQLiteOpenHelper {
             db.close();
             return false;
         }
-    }
+    }*/
 
-    /**
+    /*
      * Metoda zwraca liczbę punktów użytkownika. Obiekt Points zawiera rankingi: tygodniowy, miesięczny, ogólny.
      *
      * @return liczba punktów użytkownika.
      */
-    public Points getPoints() {
+   /* public Points getPoints() {
         SQLiteDatabase db = this.getReadableDatabase();
         try {
             Cursor cursor = db.rawQuery("select * from " + TABLE_POINTS + " where " + ID_POINTS + "= 1;", null);
@@ -408,7 +429,7 @@ public class DBHelper extends SQLiteOpenHelper {
             db.close();
             return null;
         }
-    }
+    }*/
 
     /**
      * Metoda zwraca progress w jakim jest ukonczony dany rozdział.
@@ -471,7 +492,7 @@ public class DBHelper extends SQLiteOpenHelper {
         word.setPolishWord(cursor.getString(cursor.getColumnIndex(POLISH_WORD)));
         word.setEnglishWord(cursor.getString(cursor.getColumnIndex(ENGLISH_WORD)));
         word.setProgress(cursor.getInt(cursor.getColumnIndex(PROGRESS)));
-        word.setDifficultWord(cursor.getInt(cursor.getColumnIndex(DIFFICULT)));
+        word.setDifficult(cursor.getInt(cursor.getColumnIndex(DIFFICULT)));
         word.setIdSection(cursor.getInt(cursor.getColumnIndex(ID_SECTION)));
         word.setRepeat(cursor.getInt(cursor.getColumnIndex(REPEAT)));
         word.setPartOfSpeech(cursor.getString(cursor.getColumnIndex(PART_OF_SPEECH)));
@@ -543,5 +564,74 @@ public class DBHelper extends SQLiteOpenHelper {
             return null;
         }
     }
+
+
+    public User getUser(String UID) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        User user = new User();
+        try {
+            Cursor cursor = db.rawQuery("select * from " + TABLE_USERS +
+                    " WHERE " + ID_USER + " ='" + UID + "';", null);
+            if (cursor.getCount() != 0) {
+                cursor.moveToFirst();
+                user.setIdUser(cursor.getString(cursor.getColumnIndex(ID_USER)));
+                user.setEmail(cursor.getString(cursor.getColumnIndex(EMAIL)));
+                user.setLastLogin(cursor.getLong(cursor.getColumnIndex(LAST_LOGIN)));
+                user.setWeekly(cursor.getLong(cursor.getColumnIndex(WEEKLY)));
+                user.setMonthly(cursor.getLong(cursor.getColumnIndex(MONTHLY)));
+                user.setAllTime(cursor.getLong(cursor.getColumnIndex(All_TIME)));
+                user.setBackup(cursor.getLong(cursor.getColumnIndex(BACKUP)));
+            } else user = null;
+            cursor.close();
+            db.close();
+            return user;
+        } catch (Exception e) {
+            Log.e("DatabaseError", "DatabaseError: getUser " + e);
+            return null;
+        }
+    }
+
+    public void insertOrUpdateUser(User user) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        try {
+            Cursor cursor = db.rawQuery("select * from " + TABLE_USERS +
+                    " WHERE " + ID_USER + " ='" + user.getIdUser() + "';", null);
+            cursor.moveToFirst();
+            ContentValues insertValues = new ContentValues();
+            insertValues.put(ID_USER, user.getIdUser());
+            insertValues.put(EMAIL, user.getEmail());
+            insertValues.put(LAST_LOGIN, user.getLastLogin());
+            insertValues.put(WEEKLY, user.getWeekly());
+            insertValues.put(MONTHLY, user.getMonthly());
+            insertValues.put(All_TIME, user.getAllTime());
+            insertValues.put(BACKUP, user.getBackup());
+            if (cursor.getCount() == 0) {
+                db.insert(TABLE_USERS, null, insertValues);
+            } else {
+                db.update(TABLE_USERS, insertValues, ID_USER + " = ?", new String[]{user.getIdUser()});
+            }
+            cursor.close();
+            db.close();
+        } catch (Exception e) {
+            Log.e("Database Error", "Database Error: insertOrUpdateUser " + e);
+        }
+    }
+
+    public void updateBackup(User user) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        try {
+            Cursor cursor = db.rawQuery("select * from " + TABLE_USERS +
+                    " WHERE " + ID_USER + " ='" + user.getIdUser() + "';", null);
+            cursor.moveToFirst();
+            ContentValues updateValues = new ContentValues();
+            updateValues.put(BACKUP, user.getBackup());
+            db.update(TABLE_USERS, updateValues, ID_USER + " = ?", new String[]{user.getIdUser()});
+            cursor.close();
+            db.close();
+        } catch (Exception e) {
+            Log.e("Database Error", "Database Error: updateBackup " + e);
+        }
+    }
+
 
 }

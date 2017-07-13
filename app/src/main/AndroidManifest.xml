@@ -28,7 +28,8 @@
 
         <activity
             android:name=".views.LoginActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"/>
 
         <activity
             android:name=".views.NewMainActivity"

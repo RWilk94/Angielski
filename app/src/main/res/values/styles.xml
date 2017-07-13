@@ -1,8 +1,9 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+    <style name="AppTheme" parent="@style/Theme.AppCompat">
         <!-- Kolor jak zminimalizyjesz -->
+        <item name="windowNoTitle">true</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <!-- Kolor wyciaganego paska z gory -->
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>

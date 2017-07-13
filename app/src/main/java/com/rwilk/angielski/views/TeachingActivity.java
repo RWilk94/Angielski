@@ -150,7 +150,7 @@ public class TeachingActivity extends AppCompatActivity {
      * Method calculate single increment of progress when user correctly learn words.
      */
     public void calculateIncrementOfProgress() {
-        if (sumOfProgress >= 100 || sumOfProgress == 0) incrementOfProgress = 10;
+        if (sumOfProgress >= 130 || sumOfProgress == 0) incrementOfProgress = 8;
         else incrementOfProgress = (100.0f / (sumOfProgress / 10)) + 0.01f;
     }
 
@@ -200,7 +200,7 @@ public class TeachingActivity extends AppCompatActivity {
 
     private void updatePoints(int points) {
         DBHelper db = new DBHelper(this, NewMainActivity.databaseVersion);
-        db.updatePoints(points);
+        //db.updatePoints(points);
         db.close();
     }
 

@@ -225,7 +225,7 @@ public class RepetitionActivity extends AppCompatActivity {
 
     private void updatePoints(int points) {
         DBHelper db = new DBHelper(this, NewMainActivity.databaseVersion);
-        db.updatePoints(points);
+        //db.updatePoints(points);
         db.close();
     }
 

@@ -74,7 +74,7 @@ public class SelectOfRepeat extends Activity {
             public void onClick(View view) {
                 ArrayList<Word> listOfAllWordToRepetition = new ArrayList<>();
                 for (int i = 0; i < listOfAllWordFromLevel.size(); i++) {
-                    if (listOfAllWordFromLevel.get(i).getDifficultWord() == 1)
+                    if (listOfAllWordFromLevel.get(i).getDifficult() == 1)
                         listOfAllWordToRepetition.add(listOfAllWordFromLevel.get(i));
                 }
                 if (listOfAllWordToRepetition.isEmpty()) {

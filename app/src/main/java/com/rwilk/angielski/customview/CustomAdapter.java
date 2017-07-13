@@ -77,7 +77,7 @@ public class CustomAdapter extends ArrayAdapter<Word> {
         imageButtonTrudneSlowko.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (wordList.get(positionForMethod).getDifficultWord() == 1) {
+                if (wordList.get(positionForMethod).getDifficult() == 1) {
                     imageButtonTrudneSlowko.setImageResource(R.drawable.niebieski);
                     db.setDifficult(wordList.get(positionForMethod).getId());
                 } else {
@@ -91,7 +91,7 @@ public class CustomAdapter extends ArrayAdapter<Word> {
         TextView polishWord = (TextView) customView.findViewById(R.id.textViewNapisWierszDol);
         polishWord.setText(singleWord.getPolishWord());
 
-        if (singleWord.getDifficultWord() == 1)
+        if (singleWord.getDifficult() == 1)
             imageButtonTrudneSlowko.setImageResource(R.drawable.niebieski);
         else
             imageButtonTrudneSlowko.setImageResource(R.drawable.szary);

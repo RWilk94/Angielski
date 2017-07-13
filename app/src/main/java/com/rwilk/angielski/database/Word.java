@@ -2,21 +2,19 @@ package com.rwilk.angielski.database;
 
 import java.io.Serializable;
 
-/**
- * Created by RWilk on 22.09.2016.
- */
+
 public class Word implements Serializable {
 
     private int id;
     private String polishWord;
     private String englishWord;
-    private int progress;
-    private int difficultWord;
-    private int repeat;
     private int idSection;
-    private int countingRepeats;
+    private int progress;
+    private int difficult;
+    private int repeat;
     private String partOfSpeech;
-
+    private long timeToRepeat;
+    private int countingRepeats;
 
     public int getId() {
         return id;
@@ -42,6 +40,14 @@ public class Word implements Serializable {
         this.englishWord = englishWord;
     }
 
+    public int getIdSection() {
+        return idSection;
+    }
+
+    public void setIdSection(int idSection) {
+        this.idSection = idSection;
+    }
+
     public int getProgress() {
         return progress;
     }
@@ -50,12 +56,12 @@ public class Word implements Serializable {
         this.progress = progress;
     }
 
-    public int getDifficultWord() {
-        return difficultWord;
+    public int getDifficult() {
+        return difficult;
     }
 
-    public void setDifficultWord(int difficultWord) {
-        this.difficultWord = difficultWord;
+    public void setDifficult(int difficult) {
+        this.difficult = difficult;
     }
 
     public int getRepeat() {
@@ -66,12 +72,20 @@ public class Word implements Serializable {
         this.repeat = repeat;
     }
 
-    public int getIdSection() {
-        return idSection;
+    public String getPartOfSpeech() {
+        return partOfSpeech;
     }
 
-    public void setIdSection(int idSection) {
-        this.idSection = idSection;
+    public void setPartOfSpeech(String partOfSpeech) {
+        this.partOfSpeech = partOfSpeech;
+    }
+
+    public long getTimeToRepeat() {
+        return timeToRepeat;
+    }
+
+    public void setTimeToRepeat(long timeToRepeat) {
+        this.timeToRepeat = timeToRepeat;
     }
 
     public int getCountingRepeats() {
@@ -80,13 +94,5 @@ public class Word implements Serializable {
 
     public void setCountingRepeats(int countingRepeats) {
         this.countingRepeats = countingRepeats;
-    }
-
-    public String getPartOfSpeech() {
-        return partOfSpeech;
-    }
-
-    public void setPartOfSpeech(String partOfSpeech) {
-        this.partOfSpeech = partOfSpeech;
     }
 }

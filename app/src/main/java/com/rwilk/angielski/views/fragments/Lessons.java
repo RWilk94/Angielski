@@ -15,8 +15,10 @@ import com.rwilk.angielski.database.DBHelper;
 import com.rwilk.angielski.R;
 import com.rwilk.angielski.customview.CustomAdapterFragments;
 import com.rwilk.angielski.database.Lesson;
+import com.rwilk.angielski.database.User;
 import com.rwilk.angielski.database.Word;
 import com.rwilk.angielski.views.Level;
+import com.rwilk.angielski.views.LoginActivity;
 import com.rwilk.angielski.views.NewMainActivity;
 
 import java.util.ArrayList;
@@ -79,4 +81,15 @@ public class Lessons extends Fragment {
         db.close();
         adapter.notifyDataSetChanged();
     }
+
+    /*@Override
+    public void setUserVisibleHint(boolean visible) {
+        super.setUserVisibleHint(visible);
+        if (visible && isResumed()) {
+            checkIfUserIsLogin();
+        }
+    }*/
+
+
+
 }

@@ -2,31 +2,35 @@ package com.rwilk.angielski.database;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
 @IgnoreExtraProperties
-public class User {
+public class User implements Serializable{
 
-    private String idUser;
+    private String idUser; //parameter UID
     private String email;
-    private String name;
     private long lastLogin;
-    private int backup;
+    private long weekly;
+    private long monthly;
+    private long allTime;
+    private long backup;
+
     //One To Many
     private ArrayList<Friend> friendList;
 
-    public User() {
-    }
-
-    public User(String idUser, String email, String name) {
+    public User(String idUser, String email, long lastLogin, long weekly, long monthly, long allTime, long backup) {
         this.idUser = idUser;
         this.email = email;
-        this.name = name;
-        this.lastLogin = System.currentTimeMillis();
-        this.backup = 0;
-        this.friendList = null;
+        this.lastLogin = lastLogin;
+        this.weekly = weekly;
+        this.monthly = monthly;
+        this.allTime = allTime;
+        this.backup = backup;
     }
+
+    public User(){}
 
     public String getIdUser() {
         return idUser;
@@ -52,19 +56,43 @@ public class User {
         this.lastLogin = lastLogin;
     }
 
-    public int getBackup() {
+    public long getWeekly() {
+        return weekly;
+    }
+
+    public void setWeekly(long weekly) {
+        this.weekly = weekly;
+    }
+
+    public long getMonthly() {
+        return monthly;
+    }
+
+    public void setMonthly(long monthly) {
+        this.monthly = monthly;
+    }
+
+    public long getAllTime() {
+        return allTime;
+    }
+
+    public void setAllTime(long allTime) {
+        this.allTime = allTime;
+    }
+
+    public long getBackup() {
         return backup;
     }
 
-    public void setBackup(int backup) {
+    public void setBackup(long backup) {
         this.backup = backup;
     }
 
-    public String getName() {
-        return name;
+    public ArrayList<Friend> getFriendList() {
+        return friendList;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFriendList(ArrayList<Friend> friendList) {
+        this.friendList = friendList;
     }
 }
